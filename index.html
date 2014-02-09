@@ -1,66 +1,31 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<title>Camden Reslink - Goo Contest | Goo Create</title>
+<!DOCTYPE html>
 
-<!-- disable native mobile pinch-to-zoom, replacing with the Goo Engine zoom -->
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<meta property="og:title" content="Camden Reslink - Goo Contest"/>
-<meta property="og:updated_time" content="2014-01-05T16:38:54.214583"/>
-<meta property="og:site_name" content="Goo Create"/>
-<meta property="og:type" content="website"/>
-
-<link rel="stylesheet" type="text/css" href="style/style.css">
-
-<script src="lib/howler.min.js"></script>
-<script src="lib/Tween.js"></script>
-<script src="lib/goo-require.js"></script>
-<script src="lib/jquery-1.10.2.min.js"></script>
-<script src="js/loadScene.js"></script>
-
-</head>
-
-<body>
-	<div id="loadingOverlay">
-		<div id="loadingMessage">
-			<h2>Loading project</h2>
-			<div id="progressBar">
-				<div id="progress"></div>
-			</div>
-		</div>
-	</div>
-
-	<audio loop autoplay>
-	    <source src="Robert-Meyers_THROW-THE-SWITCH-320.mp3" type="audio/mp3">
-	</audio>
-
-	<div id="overlayRight" style="position: absolute; z-index: 2001; width: 10%; height: 10%; right: 5%; bottom: 5%">
-		<img src="balloonOverlay.png" style="height: 100%; display: inline-block; float: left">
-		<div id="balloonCount" style="display: inline-block; float: left; margin-left: 5%; margin-top: 20%; font-size: 35px;">0</div>
-	</div>
-	<div id="overlayLeft" style="position: absolute; z-index: 2001; width: 10%; height: 10%; left: 2.5%; top: 5%">
-		<img id="life1" src="airplaneLife.png" style="height: 100%">
-		<img id="life2" src="airplaneLife.png" style="height: 100%">
-		<img id="life3" src="airplaneLife.png" style="height: 100%">
-	</div>
-	<div id="credits" style="position: absolute; left: 15%; top: 15%; width: 70%; height: 70%; background-color:rgba(0,0,0,0.75); color: #FFFFFF; font-size: 30px; z-index: 2002; visibility: hidden">
-		<span style="font-size: 60px">Score: <span id="finalScore"></span></span>
-		<br>
-		<br>
-		<br>
-		Music From: <a href="http://sampleswap.org/profile.php?mode=viewprofile&u=15785" style="color: #ffffff">Robert Meyers</a> under <a href="http://creativecommons.org/licenses/by/3.0/" style="color: #ffffff">CC 3.0</a>
-		<br>
-		Skybox From: <a href="http://rockandroald.net/wordpress/mondays-are-for-free-skyboxes/" style="color: #ffffff">rockandroald.net/wordpress</a>
-		<br>
-		Game By: Camden Reslink
-		<br>
-		Goo Technologies & Mozilla Holiday Game Creator Challenge - Desktop Game Category
-		<br>
-		Refresh the page to try again.
-	</div>
-	
-</body>
-
+<html>
+    <head>
+        <title>EquationEditor</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!--<link href="Fonts/CMSerif/CMSerif.css" rel="stylesheet" type="text/css" charset="utf-8" />-->
+        <link href="Fonts/ComputerModernSerif/stylesheet.css" rel="stylesheet" type="text/css" charset="utf-8" />
+        <link href="EquationEditor.css" rel="stylesheet" type="text/css" charset="utf-8" />
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+        <script src="jquery-1.10.1.min.js"></script>
+        <script src="underscore-min.js"></script>
+        <script src="EquationEditorApi.js"></script>
+        <script src="EquationEditor.js"></script>
+    </head>
+    <body>
+        <button id="stackedFractionButton">Stacked Fraction</button>
+        <button id="superscriptButton">Superscript</button>
+        <button id="subscriptButton">Subscript</button>
+        <button id="superscriptAndSubscriptButton">SuperscriptAndSubscript</button>
+        <button id="squareRootButton">SquareRoot</button>
+        <button id="nthRootButton">NthRoot</button>
+        <button id="lessThanOrEqualToButton">LessThanOrEqualTo</button>
+        <button id="greaterThanOrEqualToButton">GreaterThanOrEqualTo</button>
+        <button id="sumButton">Sum</button>
+        <div class="testContainer"></div>
+        <span class="equation">
+            <div class="container fontSizeNormal"></div>
+        </span>
+    </body>
 </html>
