@@ -21,14 +21,14 @@
 */
 @font-face {
     font-family: 'MathJax_Main';
-    src: url('eot/MathJax_Main-Regular.eot'); /* IE9 Compat Modes */
+    /*src: url('eot/MathJax_Main-Regular.eot'); /* IE9 Compat Modes */
     /*src: url('eot/MathJax_Main-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
     src: url('woff/MathJax_Main-Regular.woff') format('woff'); /* Modern Browsers */
 }
 
 @font-face {
     font-family: 'MathJax_Math';
-    src: url('eot/MathJax_Math-Italic.eot'); /* IE9 Compat Modes */
+    /*src: url('eot/MathJax_Math-Italic.eot'); /* IE9 Compat Modes */
     /*src: url('eot/MathJax_Math-Italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
     src: url('woff/MathJax_Math-Italic.woff') format('woff'); /* Modern Browsers */
     font-style: italic;
