@@ -906,7 +906,6 @@ $(window).load( function () {
     })
     
     $(document).on('mousemove', '.container', function(e) {
-        clearHighlighted();
         if (mouseDown 
             && !$(this).children().first().hasClass('squareEmptyContainerWrapper') 
             && !$(this).hasClass('squareEmptyContainer')
@@ -931,12 +930,7 @@ $(window).load( function () {
         }
     })
     
-    $(document).on('mouseleave', '.container', function (e) {
-        //$(this).removeClass('hovering');
-    })
-
     $(document).on('mouseenter', '.container', function (e) {
-        //$(this).addClass('hovering');
         if (mouseDown) {
             if (highlight.startIndex === null
              && !$(this).children().first().hasClass('squareEmptyContainerWrapper')) {

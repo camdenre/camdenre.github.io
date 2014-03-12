@@ -1,7 +1,7 @@
-"use strict";
+//"use strict";
+console.log("here");
 
 //Modernizr.svg = false;
-
 jQuery.fn.insertAt = function(index, element) {
     var lastIndex = this.children().size();
     if (index < 0) {
@@ -50,8 +50,8 @@ eqEd.SymbolSizeConfiguration = function() {
     this.fontStyles = ["fontNormal", "fontItalic"];
     // Lists all characters which need to be rendered in a normal font.
     this.fontNormal = ['0', '1', '2', '3', '4', '5', '6', '7', '8', 
-                 '9', '+', '-', '&#x00f7;', '&#x00b7;', '&#x2248;', 
-                 '=', '<', '>', '&#x2264;', '&#x2265;', '&#x221e;', 
+                 '9', '+', '&#x2212;', '&#x00f7;', '&#x22c5;', '&#x2248;', 
+                 '=', '&#60;', '&#62;', '&#x2264;', '&#x2265;', '&#x221e;', 
                  '%', '!', '.'];
     // Lists all characters which need to be rendered in an italic font. 
     this.fontItalic = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 
@@ -193,16 +193,19 @@ eqEd.SymbolSizeConfiguration = function() {
         '8': {},
         '9': {},
         '+': {},
-        '-': {},
+        // minus
+        '&#x2212;': {},
         // division operator(obelus)
         '&#x00f7;': {},
         // dot operator
-        '&#x00b7;': {},
+        '&#x22c5;': {},
         // approx. equal to
         '&#x2248;': {},
         '=': {},
-        '<': {},
-        '>': {},
+        // less than
+        '&#60;': {},
+        // greater than
+        '&#62;': {},
         // less than or equal to
         '&#x2264;': {},
         // greater than or equal to
@@ -213,7 +216,7 @@ eqEd.SymbolSizeConfiguration = function() {
         '!': {},
         '.': {}
     };
-
+    /*
     // Exeeding width expressed as a proportion of calculated character width
     this.charWidthExceedsBoundingBox = {
         'a': 0.05,
@@ -331,16 +334,19 @@ eqEd.SymbolSizeConfiguration = function() {
         '8': 0,
         '9': 0,
         '+': 0,
-        '-': 0,
+        // minus
+        '&#x2212;': 0,
         // division operator(obelus)
         '&#x00f7;': 0,
         // dot operator
-        '&#x00b7;': 0,
+        '&#x22c5;': 0,
         // approx. equal to
         '&#x2248;': 0,
         '=': 0,
-        '<': 0,
-        '>': 0,
+        // less than
+        '&#60;': 0,
+        // greater than
+        '&#62;': 0,
         // less than or equal to
         '&#x2264;': 0,
         // greater than or equal to
@@ -351,6 +357,146 @@ eqEd.SymbolSizeConfiguration = function() {
         '!': 0,
         '.': 0
     }
+    */
+    this.charWidthExceedsBoundingBox = {
+        'a': 0,
+        'b': 0,
+        'c': 0,
+        'd': 0,
+        'e': 0,
+        'f': 0,
+        'g': 0,
+        'h': 0,
+        'i': 0,
+        'j': 0,
+        'k': 0,
+        'l': 0,
+        'm': 0,
+        'n': 0,
+        'o': 0,
+        'p': 0,
+        'q': 0,
+        'r': 0,
+        's': 0,
+        't': 0,
+        'u': 0,
+        'v': 0,
+        'w': 0,
+        'x': 0,
+        'y': 0,
+        'z': 0,
+        'A': 0,
+        'B': 0,
+        'C': 0,
+        'D': 0,
+        'E': 0,
+        'F': 0,
+        'G': 0,
+        'H': 0,
+        'I': 0,
+        'J': 0,
+        'K': 0,
+        'L': 0,
+        'M': 0,
+        'N': 0,
+        'O': 0,
+        'P': 0,
+        'Q': 0,
+        'R': 0,
+        'S': 0,
+        'T': 0,
+        'U': 0,
+        'V': 0,
+        'W': 0,
+        'X': 0,
+        'Y': 0,
+        'Z': 0,
+        '&Alpha;': 0,
+        '&Beta;': 0,
+        '&Gamma;': 0,
+        '&Delta;': 0,
+        '&Epsilon;': 0,
+        '&Zeta;': 0,
+        '&Eta;': 0,
+        '&Theta;': 0,
+        '&Iota;': 0,
+        '&Kappa;': 0,
+        '&Lambda;': 0,
+        '&Mu;': 0,
+        '&Nu;': 0,
+        '&Xi;': 0,
+        '&Omicron;': 0,
+        '&Pi;': 0,
+        '&Rho;': 0,
+        '&Sigma;': 0,
+        '&Tau;': 0,
+        '&Upsilon;': 0,
+        '&Phi;': 0,
+        '&Chi;': 0,
+        '&Psi;': 0,
+        '&Omega;': 0,
+        '&alpha;': 0,
+        '&beta;': 0,
+        '&gamma;': 0,
+        '&delta;': 0,
+        '&epsilon;': 0,
+        '&zeta;': 0,
+        '&eta;': 0,
+        '&theta;': 0,
+        '&iota;': 0,
+        '&kappa;': 0,
+        '&lambda;': 0,
+        '&mu;': 0,
+        '&nu;': 0,
+        '&xi;': 0,
+        '&omicron;': 0,
+        '&pi;': 0,
+        '&rho;': 0,
+        '&sigma;': 0,
+        '&tau;': 0,
+        '&upsilon;': 0,
+        '&phi;': 0,
+        '&chi;': 0,
+        '&psi;': 0,
+        '&omega;': 0,
+        // final sigma
+        '&#x03C2;': 0,
+        // partial derivative
+        '&#x2202;': 0,
+        '0': 0,
+        '1': 0,
+        '2': 0,
+        '3': 0,
+        '4': 0,
+        '5': 0,
+        '6': 0,
+        '7': 0,
+        '8': 0,
+        '9': 0,
+        '+': 0,
+        // minus
+        '&#x2212;': 0,
+        // division operator(obelus)
+        '&#x00f7;': 0,
+        // dot operator
+        '&#x22c5;': 0,
+        // approx. equal to
+        '&#x2248;': 0,
+        '=': 0,
+        // less than
+        '&#60;': 0,
+        // greater than
+        '&#62;': 0,
+        // less than or equal to
+        '&#x2264;': 0,
+        // greater than or equal to
+        '&#x2265;': 0,
+        // infinity
+        '&#x221e;': 0,
+        '%': 0,
+        '!': 0,
+        '.': 0
+    };
 
     //Initialize the object.
     this.computeSymbolSizes();
@@ -834,10 +980,10 @@ eqEd.Container.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
                 if (this.wrappers[i-1] instanceof eqEd.OperatorWrapper
                     || this.wrappers[i-1] instanceof eqEd.LeftBracketWrapper
                     || i == 0) {
-                    this.wrappers[i].padRight = 0.05;
+                    this.wrappers[i].padRight = 0.0;
                     this.wrappers[i].updateFormattingDeep();
                 } else {
-                    this.wrappers[i].padRight = 0.2;
+                    this.wrappers[i].padRight = 0.075;
                     this.wrappers[i].updateFormattingDeep();
                 }
             }
@@ -900,10 +1046,10 @@ eqEd.Container.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
             if (prevWrapper instanceof eqEd.OperatorWrapper
                 || this.wrappers[i-1] instanceof eqEd.LeftBracketWrapper
                 || minIndex === 0) {
-                nextWrapper.padRight = 0.05;
+                nextWrapper.padRight = 0;
                 nextWrapper.updateFormattingDeep();
             } else {
-                nextWrapper.padRight = 0.2;
+                nextWrapper.padRight = 0.075;
                 nextWrapper.updateFormattingDeep();
             }
         }
@@ -1254,6 +1400,7 @@ eqEd.Symbol = function(symbolSizeConfig, character) {
 
     this.parent = null;
     this.adjustLeft = 0;
+    this.adjustTopItalic = 0.075;
     this.adjustTop = 0;
 }
 
@@ -1261,7 +1408,11 @@ eqEd.Symbol.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.Symbol.prototype.updateTop = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.top = (this.parent.padTop + this.adjustTop)*fontHeight;
+        if (this.fontStyle === "fontItalic")  {
+            this.top = (this.parent.padTop + this.adjustTopItalic)*fontHeight;
+        } else {
+            this.top = (this.parent.padTop + this.adjustTop)*fontHeight;
+        }
     }
     eqEd.Symbol.prototype.updateLeft = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
@@ -2694,10 +2845,10 @@ eqEd.OperatorWrapper = function(symbolSizeConfig, operatorSymbol) {
     this.operator.parent = this;
     this.childNoncontainers = [this.operator];
 
-    this.padLeft = 0.2;
+    this.padLeft = 0.05;//0.1;
     this.padTop = 0.0;//0.15;
-    this.padRight = 0.2;
-    //this.padBottom = 0;//-0.10;
+    this.padRight = 0.075;//0.1;
+    this.padBottom = 0.05;//-0.10;
 }
 
 eqEd.OperatorWrapper.prototype = new eqEd.Wrapper(eqEd.noConstructorCall);
@@ -2734,8 +2885,8 @@ eqEd.Operator = function(symbolSizeConfig) {
 eqEd.Operator.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.Operator.prototype.updateTop = function() {
-        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.top = (fontHeight - this.height) * 0.5;
+        //var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.top = 0;
     }
     eqEd.Operator.prototype.updateLeft = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
@@ -2763,12 +2914,14 @@ eqEd.AdditionOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
 (function() {
     eqEd.AdditionOperator.prototype.updateWidth = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.width = 0.75 * fontHeight;
+        var characterWidth = this.symbolSizeConfig.width["+"][this.parent.parent.fontSize];
+        this.width = characterWidth;
     };
     eqEd.AdditionOperator.prototype.updateHeight = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.height = 0.75 * fontHeight;
+        this.height = fontHeight;
     };
+    /*
     eqEd.AdditionOperator.prototype.buildHtmlRepresentation = function() {
         var img;
         if(Modernizr.svg) {
@@ -2778,9 +2931,248 @@ eqEd.AdditionOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
         }
         return img;
     };
+    */
+    eqEd.AdditionOperator.prototype.buildHtmlRepresentation = function() {
+        return '<div class="operator additionOperator fontNormal">+</div>';
+        //return '<div class="symbolWrapper fontNormal"><div class="symbol">+</div></div>';
+    }
 })();
 
 /////// End AdditionOperator Class ///////
+
+/////// Begin SubtractionOperator Class ///////
+
+eqEd.SubtractionOperator = function(symbolSizeConfig) {
+    if (arguments[0] instanceof eqEd.NoConstructorCall) { return; }
+    eqEd.Operator.call(this, symbolSizeConfig);
+
+    this.parent = null;
+    this.adjustLeft = 0;
+    this.adjustTop = 0;
+}
+
+eqEd.SubtractionOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
+(function() {
+    eqEd.SubtractionOperator.prototype.updateWidth = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        var characterWidth = this.symbolSizeConfig.width["&#x2212;"][this.parent.parent.fontSize];
+        this.width = characterWidth;
+    };
+    eqEd.SubtractionOperator.prototype.updateHeight = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.height = fontHeight;
+    };
+    eqEd.SubtractionOperator.prototype.buildHtmlRepresentation = function() {
+        return '<div class="operator subtractionOperator fontNormal">&#x2212;</div>';
+    }
+})();
+
+/////// End SubtractionOperator Class ///////
+
+/////// Begin EqualOperator Class ///////
+
+eqEd.EqualOperator = function(symbolSizeConfig) {
+    if (arguments[0] instanceof eqEd.NoConstructorCall) { return; }
+    eqEd.Operator.call(this, symbolSizeConfig);
+
+    this.parent = null;
+    this.adjustLeft = 0;
+    this.adjustTop = 0;
+}
+
+eqEd.EqualOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
+(function() {
+    eqEd.EqualOperator.prototype.updateWidth = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        var characterWidth = this.symbolSizeConfig.width["="][this.parent.parent.fontSize];
+        this.width = characterWidth;
+    };
+    eqEd.EqualOperator.prototype.updateHeight = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.height = fontHeight;
+    };
+    eqEd.EqualOperator.prototype.buildHtmlRepresentation = function() {
+        return '<div class="operator equalOperator fontNormal">=</div>';
+    }
+})();
+
+/////// End EqualOperator Class ///////
+
+/////// Begin LessThanOrEqualToOperator Class ///////
+
+eqEd.LessThanOrEqualToOperator = function(symbolSizeConfig) {
+    if (arguments[0] instanceof eqEd.NoConstructorCall) { return; }
+    eqEd.Operator.call(this, symbolSizeConfig);
+
+    this.parent = null;
+    this.adjustLeft = 0;
+    this.adjustTop = 0;
+}
+
+eqEd.LessThanOrEqualToOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
+(function() {
+    eqEd.LessThanOrEqualToOperator.prototype.updateWidth = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        var characterWidth = this.symbolSizeConfig.width["&#x2264;"][this.parent.parent.fontSize];
+        this.width = characterWidth;
+    };
+    eqEd.LessThanOrEqualToOperator.prototype.updateHeight = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.height = fontHeight;
+    };
+    eqEd.LessThanOrEqualToOperator.prototype.buildHtmlRepresentation = function() {
+        return '<div class="operator lessThanOrEqualToOperator fontNormal">&#x2264;</div>';
+    }
+})();
+
+/////// End LessThanOrEqualToOperator Class ///////
+
+/////// Begin LessThanOperator Class ///////
+
+eqEd.LessThanOperator = function(symbolSizeConfig) {
+    if (arguments[0] instanceof eqEd.NoConstructorCall) { return; }
+    eqEd.Operator.call(this, symbolSizeConfig);
+
+    this.parent = null;
+    this.adjustLeft = 0;
+    this.adjustTop = 0;
+}
+
+eqEd.LessThanOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
+(function() {
+    eqEd.LessThanOperator.prototype.updateWidth = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        var characterWidth = this.symbolSizeConfig.width["&#60;"][this.parent.parent.fontSize];
+        this.width = characterWidth;
+    };
+    eqEd.LessThanOperator.prototype.updateHeight = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.height = fontHeight;
+    };
+    eqEd.LessThanOperator.prototype.buildHtmlRepresentation = function() {
+        return '<div class="operator lessThanOperator fontNormal">&#60;</div>';
+    }
+})();
+
+/////// End LessThanOperator Class ///////
+
+/////// Begin GreaterThanOperator Class ///////
+
+eqEd.GreaterThanOperator = function(symbolSizeConfig) {
+    if (arguments[0] instanceof eqEd.NoConstructorCall) { return; }
+    eqEd.Operator.call(this, symbolSizeConfig);
+
+    this.parent = null;
+    this.adjustLeft = 0;
+    this.adjustTop = 0;
+}
+
+eqEd.GreaterThanOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
+(function() {
+    eqEd.GreaterThanOperator.prototype.updateWidth = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        var characterWidth = this.symbolSizeConfig.width["&#62;"][this.parent.parent.fontSize];
+        this.width = characterWidth;
+    };
+    eqEd.GreaterThanOperator.prototype.updateHeight = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.height = fontHeight;
+    };
+    eqEd.GreaterThanOperator.prototype.buildHtmlRepresentation = function() {
+        return '<div class="operator greaterThanOperator fontNormal">&#62;</div>';
+    }
+})();
+
+/////// End GreaterThanOperator Class ///////
+
+/////// Begin GreaterThanOrEqualToOperator Class ///////
+
+eqEd.GreaterThanOrEqualToOperator = function(symbolSizeConfig) {
+    if (arguments[0] instanceof eqEd.NoConstructorCall) { return; }
+    eqEd.Operator.call(this, symbolSizeConfig);
+
+    this.parent = null;
+    this.adjustLeft = 0;
+    this.adjustTop = 0;
+}
+
+eqEd.GreaterThanOrEqualToOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
+(function() {
+    eqEd.GreaterThanOrEqualToOperator.prototype.updateWidth = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        var characterWidth = this.symbolSizeConfig.width["&#x2265;"][this.parent.parent.fontSize];
+        this.width = characterWidth;
+    };
+    eqEd.GreaterThanOrEqualToOperator.prototype.updateHeight = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.height = fontHeight;
+    };
+    eqEd.GreaterThanOrEqualToOperator.prototype.buildHtmlRepresentation = function() {
+        return '<div class="operator greaterThanOrEqualToOperator fontNormal">&#x2265;</div>';
+    }
+})();
+
+/////// End GreaterThanOrEqualToOperator Class ///////
+
+/////// Begin DotProductOperator Class ///////
+
+eqEd.DotProductOperator = function(symbolSizeConfig) {
+    if (arguments[0] instanceof eqEd.NoConstructorCall) { return; }
+    eqEd.Operator.call(this, symbolSizeConfig);
+
+    this.parent = null;
+    this.adjustLeft = 0;
+    this.adjustTop = 0;
+}
+
+eqEd.DotProductOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
+(function() {
+    eqEd.DotProductOperator.prototype.updateWidth = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        var characterWidth = this.symbolSizeConfig.width["&#x22c5;"][this.parent.parent.fontSize];
+        this.width = characterWidth;
+    };
+    eqEd.DotProductOperator.prototype.updateHeight = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.height = fontHeight;
+    };
+    eqEd.DotProductOperator.prototype.buildHtmlRepresentation = function() {
+        return '<div class="operator dotProductOperator fontNormal">&#x22c5;</div>';
+    }
+})();
+
+/////// End DotProductOperator Class ///////
+
+/////// Begin DivisionOperator Class ///////
+
+eqEd.DivisionOperator = function(symbolSizeConfig) {
+    if (arguments[0] instanceof eqEd.NoConstructorCall) { return; }
+    eqEd.Operator.call(this, symbolSizeConfig);
+
+    this.parent = null;
+    this.adjustLeft = 0;
+    this.adjustTop = 0;
+}
+
+eqEd.DivisionOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
+(function() {
+    eqEd.DivisionOperator.prototype.updateWidth = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        var characterWidth = this.symbolSizeConfig.width["&#x00f7;"][this.parent.parent.fontSize];
+        this.width = characterWidth;
+    };
+    eqEd.DivisionOperator.prototype.updateHeight = function() {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.height = fontHeight;
+    };
+    eqEd.DivisionOperator.prototype.buildHtmlRepresentation = function() {
+        return '<div class="operator divisionOperator fontNormal">&#x00f7;</div>';
+    }
+})();
+
+/////// End DivisionOperator Class ///////
+
+/*
 
 /////// Begin SubtractionOperator Class ///////
 
@@ -3053,6 +3445,8 @@ eqEd.DivisionOperator.prototype = new eqEd.Operator(eqEd.noConstructorCall);
 })();
 
 /////// End DivisionOperator Class ///////
+
+*/
 
 /////// Begin BracketWrapper Class ///////
 eqEd.BracketWrapper = function(symbolSizeConfig, bracketType) {

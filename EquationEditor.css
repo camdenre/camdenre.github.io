@@ -56,15 +56,16 @@
 }
 
 .fontItalic {
-    font-family: 'cmu_serifitalic';
+    font-family: 'MathJax_Math';
+    font-style: italic;
 }
 
 .fontNormal {
-    font-family: 'cmu_serifroman';
+    font-family: 'MathJax_Main';
 }
 
 .fontSizeNormal {
-    font-size: 60px;
+    font-size: 40px;
 }
 
 .fontSizeSmaller {
@@ -88,8 +89,8 @@
     position: absolute;
     left: 0px;
     top: 0px;
+    padding-top: 13.3px;
     /*z-index: 3 !important;*/
-    -webkit-text-stroke: 1px transparent;
 }
 
 .highlighted {
@@ -163,8 +164,4 @@
 
 .bigOperatorSymbol {
     position: absolute;
-}
-
-.hovering {
-    border: 1px solid #D1D1D1 ;
 }
