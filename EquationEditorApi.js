@@ -1400,7 +1400,7 @@ eqEd.Symbol = function(symbolSizeConfig, character) {
 
     this.parent = null;
     this.adjustLeft = 0;
-    this.adjustTopItalic = 0.075;
+    this.adjustTopItalic = 0.1;
     this.adjustTop = 0;
 }
 
