@@ -65,7 +65,7 @@
 }
 
 .fontSizeNormal {
-    font-size: 40px;
+    font-size: 60px;
 }
 
 .fontSizeSmaller {
@@ -89,7 +89,7 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    padding-top: 13.3px;
+    /*padding-top: 13.3px;*/
     /*z-index: 3 !important;*/
 }
 
