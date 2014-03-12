@@ -154,6 +154,7 @@ $(window).load( function () {
     var initialWidthNormal = $('#fontTestNormal').outerWidth();
     var checkFontCounter = 0;
     var checkIfFontsLoaded = function() {
+        console.log("Check Fonts Called...");
         var newWidthItalic = $('#fontTestItalic').outerWidth();
         var newWidthNormal = $('#fontTestNormal').outerWidth();
         if ((Math.abs(newWidthItalic - initialWidthItalic) > 1) && (Math.abs(newWidthNormal - initialWidthNormal) > 1)) {
