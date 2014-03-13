@@ -2908,6 +2908,12 @@ eqEd.Operator = function(symbolSizeConfig) {
     this.parent = null;
     this.adjustLeft = 0;
     this.adjustTop = 0;
+    if (IEVersion >= 9) {
+        this.jQueryObject.css("line-height", "normal");
+        //this.adjustTopItalic = 0.2;
+    } else {
+        //this.adjustTopItalic = 0.05;
+    }
 }
 
 eqEd.Operator.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
