@@ -852,6 +852,7 @@ $(window).load( function () {
         mouseDown = true;
         cursor.removeCursor();
         highlight.removeHighlight();
+        clearHighlighted();
         $('.activeContainer').removeClass('activeContainer');
         $('.topLevelEmptyContainerWrapper').css('background', '#EDEDED');
         removeBlink();
@@ -908,6 +909,9 @@ $(window).load( function () {
     })
     
     $(document).on('mousemove', '.container', function(e) {
+        if (mouseDown) {
+            clearHighlighted();
+        }
         if (mouseDown 
             && !$(this).children().first().hasClass('squareEmptyContainerWrapper') 
             && !$(this).hasClass('squareEmptyContainer')
@@ -933,6 +937,9 @@ $(window).load( function () {
     })
     
     $(document).on('mouseenter', '.container', function (e) {
+        if (mouseDown) {
+            clearHighlighted();
+        }
         if (mouseDown) {
             if (highlight.startIndex === null
              && !$(this).children().first().hasClass('squareEmptyContainerWrapper')) {
