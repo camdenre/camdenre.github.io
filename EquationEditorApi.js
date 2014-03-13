@@ -1440,6 +1440,7 @@ eqEd.Symbol = function(symbolSizeConfig, character) {
     alert(BrowserDetect.browser + ", " + BrowserDetect.version);
     if (BrowserDetect.browser === 'Explorer' && BrowserDetect.version >= 9) {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        alert(fontHeight);
         this.jQueryObject.css("padding-top", fontHeight/3);
     }
 
