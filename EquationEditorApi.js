@@ -1437,10 +1437,10 @@ eqEd.Symbol = function(symbolSizeConfig, character) {
     // Superclass constructor needs to get called after character and fontStyle are defined,
     // because the object method buildHtmlRepresentation depends on them.
     eqEd.EquationObject.call(this, symbolSizeConfig);
-    alert(BrowserDetect.browser + ", " + BrowserDetect.version);
+    console.log(BrowserDetect.browser + ", " + BrowserDetect.version);
     if (BrowserDetect.browser === 'Explorer' && BrowserDetect.version >= 9) {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        alert(fontHeight);
+        console.log(fontHeight);
         this.jQueryObject.css("padding-top", fontHeight/3);
     }
 
