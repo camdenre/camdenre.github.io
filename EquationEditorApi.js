@@ -1,6 +1,6 @@
 //"use strict";
 console.log("here");
-
+alert("beginning of equation editor api");
 //Modernizr.svg = false;
 jQuery.fn.insertAt = function(index, element) {
     var lastIndex = this.children().size();
