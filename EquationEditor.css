@@ -2,6 +2,7 @@
     margin: 20px;
     position: relative;
     display: block;
+    line-height: 1;
 }
 
 .testContainer {
@@ -23,7 +24,7 @@
 }
 
 .container {
-    line-height: 1;
+    /*line-height: 1;*/
     position: absolute;
     left: 0px;
     top: 0px;
@@ -85,7 +86,7 @@
 }
 
 .symbol {
-    line-height: 1;
+    /*line-height: 1;*/
     position: absolute;
     left: 0px;
     top: 0px;
