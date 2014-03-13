@@ -143,7 +143,7 @@ function preload(arrayOfImages) {
 // Usage:
 
 preload(['Images/radical.png', 'Images/radicalHighlight.png', 'Images/radicalDiagonalLine.png', 'Images/radicalDiagonalLineHighlight.png', 'Images/additionOperator.png', 'Images/additionOperatorHighlight.png', 'Images/subtractionOperator.png', 'Images/subtractionOperatorHighlight.png', 'Images/dotProductOperator.png', 'Images/dotProductOperatorHighlight.png', 'Images/equalOperator.png', 'Images/equalOperatorHighlight.png', 'Images/greaterThanOrEqualToOperator.png', 'Images/greaterThanOrEqualToOperatorHighlight.png', 'Images/lessThanOrEqualToOperator.png', 'Images/lessThanOrEqualToOperatorHighlight.png', 'Images/parenthesesLeftBracket.png', 'Images/parenthesesLeftBracketHighlight.png', 'Images/parenthesesRightBracket.png', 'Images/parenthesesRightBracketHighlight.png', 'Images/curlyLeftBracket.png', 'Images/curlyLeftBracketHighlight.png', 'Images/curlyRightBracket.png', 'Images/curlyRightBracketHighlight.png', 'Images/squareLeftBracket.png', 'Images/squareLeftBracketHighlight.png', 'Images/squareRightBracket.png', 'Images/squareRightBracketHighlight.png', "Images/sumOperator.png", "Images/sumOperatorHighlight.png"]);
-
+alert("images are loaded!");
 $(window).load( function () {
     var symbolSizeConfig = null;
 
@@ -154,7 +154,7 @@ $(window).load( function () {
     var initialWidthNormal = $('#fontTestNormal').outerWidth();
     var checkFontCounter = 0;
     var checkIfFontsLoaded = function() {
-        console.log("Check Fonts Called...");
+        alert("Check Fonts Called...");
         var newWidthItalic = $('#fontTestItalic').outerWidth();
         var newWidthNormal = $('#fontTestNormal').outerWidth();
         if ((Math.abs(newWidthItalic - initialWidthItalic) > 1) && (Math.abs(newWidthNormal - initialWidthNormal) > 1)) {
@@ -174,7 +174,7 @@ $(window).load( function () {
         }
         checkFontCounter = checkFontCounter + 1;
     }
-
+    alert("before checkIfFontsLoaded");
     var intervalId = window.setInterval(checkIfFontsLoaded, 250);
     var cursor = new eqEd.Cursor();
     var highlight = new eqEd.Highlight();
@@ -182,6 +182,7 @@ $(window).load( function () {
     // This is just so I have a container to start with...this will have to get replaced with something else in the future //
     var container;
     var setupContainer = function() {
+        alert("after checkIfFontsLoaded, begin setupContainer");
         container = new eqEd.Container(symbolSizeConfig);
         container.jQueryObject = $('.container').first();
         container.jQueryObject.data("eqObject", container);
