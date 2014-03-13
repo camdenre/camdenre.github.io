@@ -22,8 +22,7 @@ var getInternetExplorerVersion = function()
   return rv;
 }
 
-alert(getInternetExplorerVersion());
-
+var IEVersion = getInternetExplorerVersion();
 jQuery.fn.insertAt = function(index, element) {
     var lastIndex = this.children().size();
     if (index < 0) {
@@ -1419,6 +1418,11 @@ eqEd.Symbol = function(symbolSizeConfig, character) {
     // Superclass constructor needs to get called after character and fontStyle are defined,
     // because the object method buildHtmlRepresentation depends on them.
     eqEd.EquationObject.call(this, symbolSizeConfig);
+
+    // line-height seems to be messed up in IE 9+
+    if (IEVersion >= 9) {
+        this.jQueryObject.css("line-height", "normal");
+    }
 
     this.parent = null;
     this.adjustLeft = 0;
