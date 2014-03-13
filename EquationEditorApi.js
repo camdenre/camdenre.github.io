@@ -1,6 +1,47 @@
-//"use strict";
+"use strict";
 alert("beginning of equation editor api");
 //Modernizr.svg = false;
+
+// I need special behavior for IE >= 9...issues with how the fonts get rendered (gets pushed too high for some reason)
+var BrowserDetect = 
+{
+    init: function () 
+    {
+        this.browser = this.searchString(this.dataBrowser) || "Other";
+        this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion) || "Unknown";
+    },
+
+    searchString: function (data) {
+        for (var i = 0; i < data.length; i++)   
+        {
+            var dataString = data[i].string;
+            this.versionSearchString = data[i].subString;
+
+            if (dataString.indexOf(data[i].subString) != -1)
+            {
+                return data[i].identity;
+            }
+        }
+    },
+
+    searchVersion: function (dataString) {
+        var index = dataString.indexOf(this.versionSearchString);
+        if (index === -1) return;
+        return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
+    },
+
+    dataBrowser: 
+    [
+        { string: navigator.userAgent, subString: "Chrome",  identity: "Chrome" },
+        { string: navigator.userAgent, subString: "MSIE",    identity: "Explorer" },
+        { string: navigator.userAgent, subString: "Firefox", identity: "Firefox" },
+        { string: navigator.userAgent, subString: "Safari",  identity: "Safari" },
+        { string: navigator.userAgent, subString: "Opera",   identity: "Opera" }
+    ]
+
+};
+BrowserDetect.init();
+
 jQuery.fn.insertAt = function(index, element) {
     var lastIndex = this.children().size();
     if (index < 0) {
@@ -1396,6 +1437,11 @@ eqEd.Symbol = function(symbolSizeConfig, character) {
     // Superclass constructor needs to get called after character and fontStyle are defined,
     // because the object method buildHtmlRepresentation depends on them.
     eqEd.EquationObject.call(this, symbolSizeConfig);
+    alert(BrowserDetect.browser + ", " + BrowserDetect.version);
+    if (BrowserDetect.browser === 'Explorer' && BrowserDetect.version >= 9) {
+        var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        this.jQueryObject.css("padding-top", fontHeight/3);
+    }
 
     this.parent = null;
     this.adjustLeft = 0;
