@@ -1422,11 +1422,13 @@ eqEd.Symbol = function(symbolSizeConfig, character) {
     // line-height seems to be messed up in IE 9+
     if (IEVersion >= 9) {
         this.jQueryObject.css("line-height", "normal");
+        this.adjustTopItalic = 0.2;
+    } else {
+        this.adjustTopItalic = 0.05;
     }
 
     this.parent = null;
     this.adjustLeft = 0;
-    this.adjustTopItalic = 0.05;
     this.adjustTop = 0;
 }
 
