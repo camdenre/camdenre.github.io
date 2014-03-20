@@ -1341,14 +1341,15 @@ eqEd.Symbol = function(symbolSizeConfig, character) {
     // because the object method buildHtmlRepresentation depends on them.
     eqEd.EquationObject.call(this, symbolSizeConfig);
 
+    
     // line-height seems to be messed up in IE 9+
     if (IEVersion >= 9) {
         this.jQueryObject.css("line-height", "normal");
-        this.adjustTopItalic = 0.2;
+        //this.adjustTopItalic = 0.2;
+        this.adjustTopItalic = 0.075;
     } else {
-        this.adjustTopItalic = 0.05;
+        this.adjustTopItalic = 0;
     }
-
     this.parent = null;
     this.adjustLeft = 0;
     this.adjustTop = 0;
@@ -3026,6 +3027,15 @@ eqEd.BracketWrapper.prototype = new eqEd.Wrapper(eqEd.noConstructorCall);
                 this.width = (0 + this.padLeft + this.padRight) * fontHeight;
             }
         }
+        for (var i = 0; i < this.childNoncontainers.length; i++) {
+            var bracketObject = this.childNoncontainers[i];
+            if (IEVersion >= 9) {
+                bracketObject.jQueryObject.css("line-height", "normal");
+                //this.adjustTopItalic = 0.2;
+                //bracketObject.adjustTop = -0.075;
+                //alert("bracketObject.top: " + bracketObject.top);
+            }
+        }
     }
 })();
 /////// End BracketWrapper Class ///////
@@ -3076,6 +3086,16 @@ eqEd.WholeBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.WholeBracket.prototype.updateTop = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        if (IEVersion >= 9) {
+            if (this.fontFamily === "MathJax_Size3") {
+                this.adjustTop = 0;
+            } else if (this.fontFamily === "MathJax_Size4") {
+                this.adjustTop = 0;
+            } else {
+                this.adjustTop = -0.075;
+            }
+            
+        }
         this.top = (this.parent.padTop + this.adjustTop) * fontHeight;
     }
     eqEd.WholeBracket.prototype.updateLeft = function() {
@@ -3114,6 +3134,9 @@ eqEd.TopBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.TopBracket.prototype.updateTop = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+        if (IEVersion >= 9) {
+            this.adjustTop = -0.59;
+        }
         this.top = (this.parent.padTop + this.adjustTop) * fontHeight;
     }
     eqEd.TopBracket.prototype.updateLeft = function() {
@@ -3153,7 +3176,10 @@ eqEd.MiddleBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.MiddleBracket.prototype.updateTop = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.top = (this.parent.padTop + this.adjustTopFactor * this.index + 1.5) * fontHeight;
+        if (IEVersion >= 9) {
+            this.adjustTop = -1;
+        }
+        this.top = (this.parent.padTop + this.adjustTop + this.adjustTopFactor * this.index + 1.5) * fontHeight;
     }
     eqEd.MiddleBracket.prototype.updateLeft = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
@@ -3190,7 +3216,10 @@ eqEd.BottomBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.BottomBracket.prototype.updateTop = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.top = (this.parent.padTop + (2.5 + (0.45 * (this.parent.middleBrackets.length - 1)))) * fontHeight;
+        if (IEVersion >= 9) {
+            this.adjustTop = -1;
+        }
+        this.top = (this.parent.padTop + this.adjustTop + (2.5 + (0.45 * (this.parent.middleBrackets.length - 1)))) * fontHeight;
     }
     eqEd.BottomBracket.prototype.updateLeft = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
