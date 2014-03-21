@@ -3105,11 +3105,13 @@ eqEd.WholeBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
     eqEd.WholeBracket.prototype.updateWidth = function() {
         //var characterWidth = this.symbolSizeConfig.width[this.character][this.parent.parent.fontSize];
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.width = 3 * fontHeight;
+        //this.width = 3 * fontHeight;
+        this.width = 0;
     }
     eqEd.WholeBracket.prototype.updateHeight = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.height = 3 * fontHeight;
+        //this.height = 3 * fontHeight;
+        this.height = 0;
     }
     eqEd.WholeBracket.prototype.buildHtmlRepresentation = function() {
         return '<div class="wholeBracket" style="font-family: ' + this.fontFamily + '">' + this.character + '</div>';
@@ -3146,11 +3148,13 @@ eqEd.TopBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
     }
     eqEd.TopBracket.prototype.updateWidth = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.width = 3 * fontHeight;
+       //this.width = 3 * fontHeight;
+       this.width = 0;
     }
     eqEd.TopBracket.prototype.updateHeight = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.height = 3 * fontHeight;
+        //this.height = 3 * fontHeight;
+        this.height = 0;
     }
     eqEd.TopBracket.prototype.buildHtmlRepresentation = function() {
         return '<div class="topBracket" style="font-family: MathJax_Size4">' + this.character + '</div>';
@@ -3189,11 +3193,13 @@ eqEd.MiddleBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
     }
     eqEd.MiddleBracket.prototype.updateWidth = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.width = 3 * fontHeight;
+        //this.width = 3 * fontHeight;
+        this.width = 0;
     }
     eqEd.MiddleBracket.prototype.updateHeight = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.height = 3 * fontHeight;
+        //this.height = 3 * fontHeight;
+        this.height = 0;
     }
     eqEd.MiddleBracket.prototype.buildHtmlRepresentation = function() {
         return '<div class="middleBracket" style="font-family: MathJax_Size4">' + this.character + '</div>';
@@ -3230,11 +3236,13 @@ eqEd.BottomBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
     }
     eqEd.BottomBracket.prototype.updateWidth = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.width = 3 * fontHeight;
+        //this.width = 3 * fontHeight;
+        this.width = 0;
     }
     eqEd.BottomBracket.prototype.updateHeight = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        this.height = 3 * fontHeight;
+        //this.height = 3 * fontHeight;
+        this.height = 0;
     }
     eqEd.BottomBracket.prototype.buildHtmlRepresentation = function() {
         return '<div class="bottomBracket" style="font-family: MathJax_Size4">' + this.character + '</div>';
