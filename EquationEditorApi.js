@@ -3168,6 +3168,7 @@ eqEd.MiddleBracket = function(symbolSizeConfig, character, index) {
     eqEd.EquationObject.call(this, symbolSizeConfig);
 
     this.parent = null;
+    this.adjustTop = 0;
     this.adjustLeft = 0.001;
     this.adjustTopFactor = 0.45;
     this.index = index;
@@ -3211,6 +3212,7 @@ eqEd.BottomBracket = function(symbolSizeConfig, character) {
 
     this.parent = null;
     this.adjustLeft = 0.001;
+    this.adjustTop = 0;
 }
 
 eqEd.BottomBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
