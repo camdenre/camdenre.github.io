@@ -3266,7 +3266,7 @@ eqEd.MiddleBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
             } else {
                 //console.log(this.adjustTopFactor);
                 var centerBracket = Math.round(numSegs / 2) * this.adjustTopFactor + 1.1 + 0.15;
-                this.top = (centerBracket + 0.878 + (this.index - Math.round(numSegs / 2) - 1) * this.adjustTopFactor) * fontHeight;
+                this.top = (centerBracket + 0.878 + (this.index - Math.round(numSegs / 2) - 1) * this.adjustTopFactor + this.adjustTop + this.parent.padTop) * fontHeight;
             }
 
             /*
