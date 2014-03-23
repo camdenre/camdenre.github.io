@@ -3327,7 +3327,9 @@ eqEd.BottomBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
         if (this.parent.bracketType === "leftCurly" || this.parent.bracketType === "rightCurly") {
             var length = this.parent.middleBrackets.length;
             var centerIndex = Math.floor(length / 2);
-            this.top = this.parent.middleBrackets[centerIndex].top + ((length - 1 - centerIndex) * 0.231 + 0.5 + this.parent.padTop + this.adjustTop) * fontHeight;
+            // don't need to add adjustTop twice, bc it is already taken into consideration
+            // when taking top value of centerIndex.
+            this.top = this.parent.middleBrackets[centerIndex].top + ((length - 1 - centerIndex) * 0.231 + 0.5 + this.parent.padTop) * fontHeight;
         } else if (this.parent.bracketType === "leftParenthesis" || this.parent.bracketType =="rightParenthesis" || this.bracketType === "leftSquare" || this.bracketType =="rightSquare") {
             this.top = (this.parent.padTop + this.adjustTop + (2.5 + (0.45 * (this.parent.middleBrackets.length - 1)))) * fontHeight;
         }
