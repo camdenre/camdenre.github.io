@@ -3260,9 +3260,9 @@ eqEd.MiddleBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
             // numSegs refers to the number of vertical middle segments.
             var numSegs = this.parent.middleBrackets.length - 1;
             if (this.index < Math.round(numSegs / 2)) {
-                this.top = ((this.index + 1) * this.adjustTopFactor + 0.15) * fontHeight;
+                this.top = ((this.index + 1) * this.adjustTopFactor + 0.15 + this.adjustTop + this.parent.padTop) * fontHeight;
             } else if (this.index === Math.round(numSegs / 2)) {
-                this.top = (this.index * this.adjustTopFactor + 1.1 + 0.15) * fontHeight;
+                this.top = (this.index * this.adjustTopFactor + 1.1 + 0.15 + this.adjustTop + this.parent.padTop) * fontHeight;
             } else {
                 //console.log(this.adjustTopFactor);
                 var centerBracket = Math.round(numSegs / 2) * this.adjustTopFactor + 1.1 + 0.15;
