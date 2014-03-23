@@ -1348,7 +1348,7 @@ eqEd.Symbol = function(symbolSizeConfig, character) {
 IEVersion
     
     // line-height seems to be messed up in IE 9+
-    if (IEVersion >= 7) {
+    if (IEVersion >= 9) {
         //this.jQueryObject.css("line-height", "normal");
         //this.adjustTopItalic = 0.2;
         //this.adjustTopItalic = 0.175;
@@ -2851,7 +2851,7 @@ eqEd.Operator = function(symbolSizeConfig, character) {
     this.parent = null;
     this.adjustLeft = 0;
     this.adjustTop = 0;
-    if (IEVersion >= 7) {
+    if (IEVersion >= 9) {
         //this.jQueryObject.css("line-height", "normal");
         //this.adjustTopItalic = 0.2;
         this.adjustTop = 0.3;
@@ -3154,7 +3154,7 @@ eqEd.WholeBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.WholeBracket.prototype.updateTop = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        if (IEVersion >= 7) {
+        if (IEVersion >= 9) {
             this.adjustTop += (-0.02 + 0.3);
         }
         this.top = (this.parent.padTop + this.adjustTop) * fontHeight;
@@ -3202,7 +3202,7 @@ eqEd.TopBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.TopBracket.prototype.updateTop = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        if (IEVersion >= 7) {
+        if (IEVersion >= 9) {
             this.adjustTop += (-0.02 + 0.3);
         }
         this.top = (this.parent.padTop + this.adjustTop) * fontHeight;
@@ -3252,7 +3252,7 @@ eqEd.MiddleBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.MiddleBracket.prototype.updateTop = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        if (IEVersion >= 7) {
+        if (IEVersion >= 9) {
             this.adjustTop += (-0.02 + 0.3);
         }
         if (this.parent.bracketType === "leftCurly" || this.parent.bracketType === "rightCurly") {
@@ -3321,7 +3321,7 @@ eqEd.BottomBracket.prototype = new eqEd.EquationObject(eqEd.noConstructorCall);
 (function() {
     eqEd.BottomBracket.prototype.updateTop = function() {
         var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
-        if (IEVersion >= 7) {
+        if (IEVersion >= 9) {
             this.adjustTop += (-0.02 + 0.3);
         }
         if (this.parent.bracketType === "leftCurly" || this.parent.bracketType === "rightCurly") {
