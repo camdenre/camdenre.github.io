@@ -281,8 +281,9 @@ $(window).load( function () {
                 case 8: // backspace
                     if ($('.highlighted').length === 0) {
                         if (cursor.index !== 0 && $('#cursor').length > 0) {
-                            cursor.parent.removeWrappers(cursor.index - 1);
-                            cursor.moveLeft();
+                            cursor.index = cursor.index - 1;
+                            cursor.parent.removeWrappers(cursor.index);
+                            cursor.updateFormatting();
                         }
                     } else {
                         var deleteWrappers;
