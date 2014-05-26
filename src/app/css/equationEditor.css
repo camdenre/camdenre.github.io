@@ -1,0 +1,182 @@
+.equation {
+    position: relative;
+    line-height: 1;
+}
+
+.activeContainer .hoverContainer {
+    background: #B5B5B5;
+}
+
+.hoverContainer {
+    background: #E8E8E8;
+}
+
+.equation div,
+.equation span,
+.equation svg,
+.equation img {
+    position: absolute;
+    top: 0em;
+    left: 0em;
+    overflow: visible;
+    /* Try to prevent highlighting */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+}
+
+.equation.container {
+    margin: 20px;
+}
+
+.fontTest {
+    visibility: hidden;
+}
+
+.fontSizeNormal {
+    font-size: 45px;
+}
+
+.fontSizeSmaller {
+    font-size: 37px; /* fontSizeNormal * 0.707 */
+}
+
+.fontSizeSmallest {
+    font-size: 37px; /* fontSizeNormal * 0.5 */
+}
+
+.fontSizeMessage {
+    font-size: 20px;
+}
+
+.MathJax_MathItalic {
+    font-family: 'MathJax_Math';
+    font-style: italic;
+}
+
+.MathJax_Main {
+    font-family: 'MathJax_Main';
+}
+
+.MathJax_Size3 {
+    font-family: 'MathJax_Size3';
+}
+
+.MathJax_Size4 {
+    font-family: 'MathJax_Size4';
+}
+
+div.cursor {
+    background-color: #000000;
+    /* The cursor should always be on top */
+    z-index: 50 !important;
+}
+
+div.normalCursor {
+    width: 2px;
+    height: 90%;
+    top: 5%;
+    left: 0px;
+}
+
+div.squareCursor {
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+}
+
+.cursorOff {
+    visibility: hidden;
+}
+
+.highlight {
+    background: #5266FF;
+}
+
+.highlighted div {
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.highlighted .stackedFractionHorizontalBar,
+.highlighted .squareRootOverBar,
+.highlighted .nthRootOverBar {
+    background: #FFFFFF;
+}
+
+.highlighted path {
+    fill: #FFFFFF;
+}
+
+.highlighted .highlightVersion {
+    visibility: visible;
+}
+
+.highlighted .nonHighlightVersion {
+    visibility: hidden;
+}
+
+.container {
+    cursor: text;
+    z-index: 3;
+}
+
+div.activeContainer {
+    background: #CFCFCF;
+}
+
+.squareEmptyContainer {
+    cursor: pointer;
+    border: 4px solid #000000;
+}
+
+.wrapper {
+    overflow: visible;
+    z-index: 3;
+}
+
+.activeContainer .topLevelEmptyContainerWrapper {
+    background: #CFCFCF;
+}
+
+.topLevelEmptyContainerWrapper {
+    background: #EDEDED;
+}
+
+.stackedFractionHorizontalBar {
+    background: #000000;
+}
+
+.squareRootOverBar {
+    background: #000000;
+}
+
+.nthRootOverBar {
+    background: #000000;
+}
+
+.nthRootRadical {
+    z-index: 7;
+}
+
+.bracketWrapper {
+    overflow: hidden;
+}
+
+.nonHighlightVersion {
+    visibility: visible;
+}
+
+.highlightVersion {
+    visibility: hidden;
+}
+
+.eqImg {
+    width: 100%;
+    height: 100%;
+}
