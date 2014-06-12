@@ -5,11 +5,6 @@ eqEd.RightParenthesisBottomBracket = function(symbolSizeConfig) {
     this.character = "&#9120;";
     this.fontStyle = "MathJax_Size4";
     this.domObj = this.buildDomObj();
-    this.adjustLeft = 0.001;
-    this.adjustTop = 0;
-    if (IEVersion >= 9) {
-        this.adjustTop += (-0.02 + 0.3);
-    }
 
     // Set up the top calculation
     var top = 0;
@@ -21,7 +16,7 @@ eqEd.RightParenthesisBottomBracket = function(symbolSizeConfig) {
             top = value;
         },
         compute: function() {
-            var fontHeight = this.symbolSizeConfig.height[this.parent.parent.fontSize];
+            var fontHeight = this.symbolSizeConfig.height[this.parent.parent.parent.fontSize];
             var topVal = 0;
             if (this.parent.middleBrackets.length === 0) {
                 topVal = 1.939 * fontHeight;

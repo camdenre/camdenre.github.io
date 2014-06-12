@@ -1,6 +1,7 @@
 .equation {
     position: relative;
     line-height: 1;
+    overflow: visible;
 }
 
 .activeContainer .hoverContainer {
@@ -18,7 +19,6 @@
     position: absolute;
     top: 0em;
     left: 0em;
-    overflow: visible;
     /* Try to prevent highlighting */
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -42,11 +42,11 @@
 }
 
 .fontSizeSmaller {
-    font-size: 37px; /* fontSizeNormal * 0.707 */
+    font-size: 35px; /* fontSizeNormal * 0.707 */
 }
 
 .fontSizeSmallest {
-    font-size: 37px; /* fontSizeNormal * 0.5 */
+    font-size: 30px; /* fontSizeNormal * 0.5 */
 }
 
 .fontSizeMessage {
@@ -60,6 +60,14 @@
 
 .MathJax_Main {
     font-family: 'MathJax_Main';
+}
+
+.MathJax_Size1 {
+    font-family: 'MathJax_Size1';
+}
+
+.MathJax_Size2 {
+    font-family: 'MathJax_Size2';
 }
 
 .MathJax_Size3 {
@@ -113,12 +121,8 @@ div.squareCursor {
     fill: #FFFFFF;
 }
 
-.highlighted .highlightVersion {
-    visibility: visible;
-}
-
-.highlighted .nonHighlightVersion {
-    visibility: hidden;
+.highlighted rect {
+    stroke: #FFFFFF !important;
 }
 
 .container {
@@ -136,7 +140,6 @@ div.activeContainer {
 }
 
 .wrapper {
-    overflow: visible;
     z-index: 3;
 }
 
@@ -162,10 +165,6 @@ div.activeContainer {
 
 .nthRootRadical {
     z-index: 7;
-}
-
-.bracketWrapper {
-    overflow: hidden;
 }
 
 .nonHighlightVersion {

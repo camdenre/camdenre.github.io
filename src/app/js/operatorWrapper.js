@@ -22,7 +22,7 @@ eqEd.OperatorWrapper = function(operatorSymbol, fontStyle, symbolSizeConfig) {
         compute: function() {
             var isUnaryVal = false;
             var i = this.index;
-            if ((i === 0 || this.parent.wrappers[i-1] instanceof eqEd.OperatorWrapper || this.parent.wrappers[i-1] instanceof eqEd.LeftBracketWrapper)
+            if ((i === 0 || this.parent.wrappers[i-1] instanceof eqEd.OperatorWrapper || (this.parent.wrappers[i-1] instanceof eqEd.BracketWrapper && this.parent.wrappers[i-1].bracket instanceof eqEd.LeftBracket))
                 && (this.operator.character === "+" || this.operator.character === "&#x2212;")) {
                     isUnaryVal = true;
             }
@@ -67,6 +67,8 @@ eqEd.OperatorWrapper = function(operatorSymbol, fontStyle, symbolSizeConfig) {
             var padLeftVal = 0.15;
             if (this.isComparison) {
                 padLeftVal = 0.2;
+            } else if (this.isUnary && this.index === 0) {
+                padLeftVal = 0;
             }
             return padLeftVal;
         },
