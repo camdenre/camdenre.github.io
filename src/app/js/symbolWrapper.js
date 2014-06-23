@@ -30,7 +30,7 @@ eqEd.SymbolWrapper = function(character, fontStyle, symbolSizeConfig) {
                     for (var i = 0; i < this.index; i++) {
                         var wrapper = this.parent.wrappers[i];
                         if (wrapper instanceof eqEd.IntegralWrapper) {
-                            integralCount++;
+                            integralCount += wrapper.numIntegrals;
                         } else if (wrapper instanceof eqEd.SymbolWrapper 
                                     && wrapper.symbol.character === 'd'
                                     && this.parent.wrappers[i + 1] instanceof eqEd.SymbolWrapper
@@ -61,7 +61,7 @@ eqEd.SymbolWrapper = function(character, fontStyle, symbolSizeConfig) {
             var padLeftVal = 0;
             // Special padding logic for differentials after integrals.
             if (this.isDifferential) {
-                padLeftVal = 0.2;
+                padLeftVal = 0.15;
             }
             if (this.index === 0) {
                 //padLeftVal += 0.1;
@@ -82,26 +82,11 @@ eqEd.SymbolWrapper = function(character, fontStyle, symbolSizeConfig) {
         },
         compute: function() {
             var padRightVal = 0;
-            if ((/[A-Z]/).test(character)) {
-                padRightVal += 0.075;
-            }
             // Special padding logic for differentials after integrals.
             if (this.index !== 0 && this.parent.wrappers[this.index - 1].isDifferential) {
                 // At zero for now, but could add padding after differential if I wanted to here.
                 padRightVal += 0;
             }
-            // This padRight gives a little breathing room for partial differential with a superscript.
-            if (this.symbol.character === '&#8706;' 
-                && (this.index !== this.parent.wrappers.length - 1)
-                && this.parent.wrappers[this.index + 1] instanceof eqEd.SuperscriptWrapper) {
-                padRightVal += 0.05;
-            }
-            /*
-            // Prevents characters from overlapping the end of the container
-            if (this.index === this.parent.wrappers.length - 1) {
-                padRightVal += 0.075;
-            }
-            */
             return padRightVal;
         },
         updateDom: function() {}
@@ -163,6 +148,6 @@ eqEd.SymbolWrapper = function(character, fontStyle, symbolSizeConfig) {
     };
     eqEd.SymbolWrapper.prototype.buildDomObj = function() {
         return new eqEd.WrapperDom(this,
-            '<div class="wrapper symbolWrapper"></div>')
+            '<div class="eqEdWrapper symbolWrapper"></div>')
     };
 })();

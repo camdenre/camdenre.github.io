@@ -3,7 +3,6 @@ $(window).load(function () {
     var fontsLoaded = false;
     var imagesLoaded = false;
     var setupInitialContainer = function() {
-        ///*
         var container = new eqEd.Container(symbolSizeConfig);
         container.padTop = 0.2;
         container.padBottom = 0.2;
@@ -15,7 +14,6 @@ $(window).load(function () {
         var topLevelEmptyContainerWrapper = new eqEd.TopLevelEmptyContainerWrapper(symbolSizeConfig);
         container.addWrappers([0, topLevelEmptyContainerWrapper]);
         topLevelEmptyContainerWrapper.updateAll();
-        //*/
     };
 
     var setup = function() {
@@ -53,6 +51,6 @@ $(window).load(function () {
         callback();
     };
 
-    loadFonts(['MathJax_Main', 'MathJax_Math:i4', 'MathJax_Size1', 'MathJax_Size2', 'MathJax_Size3', 'MathJax_Size4'], '../../Fonts/TeX/font.css', setup);
+    loadFonts(['MathJax_Main', 'MathJax_Main:i4', 'MathJax_Math:i4', 'MathJax_Size1', 'MathJax_Size2', 'MathJax_Size3', 'MathJax_Size4'], '../../Fonts/TeX/font.css', setup);
     loadImages([], setup);
 });

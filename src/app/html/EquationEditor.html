@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <title>Equation Editor</title>
   <!--<link href="../../Fonts/TeX/font.css" rel="stylesheet" type="text/css" charset="utf-8" />-->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" charset="utf-8" />
   <link href="../css/equationEditor.css" rel="stylesheet" type="text/css" charset="utf-8" />
   <script src="../../lib/jquery-2.0.0.js"></script>
   <script src="../../lib/underscore-1.6.0.js"></script>
   <script src="../../lib/mousetrap-1.4.6.js"></script>
+  <script src="../../lib/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
   <script src="../js/property.js"></script>
   <script src="../js/init.js"></script>
@@ -159,6 +161,9 @@
   <script src="../js/limitSymbol.js"></script>
   <script src="../js/matrixWrapper.js"></script>
   <script src="../js/matrixContainer.js"></script>
+  <script src="../js/accentWrapper.js"></script>
+  <script src="../js/accentSymbol.js"></script>
+  <script src="../js/accentContainer.js"></script>
   <script src="../js/blinkingCursor.js"></script>
   <script src="../js/mouseInteraction.js"></script>
   <script src="../js/addWrapperUtil.js"></script>
@@ -167,6 +172,7 @@
   <script src="../js/equationEditor.js"></script>
 </head>
 <body>
+  <!--
     <button id="stackedFractionButton">Stacked Fraction</button>
     <button id="superscriptButton">Superscript</button>
     <button id="subscriptButton">Subscript</button>
@@ -175,6 +181,7 @@
     <button id="nthRootButton">NthRoot</button>
     <button id="lessThanOrEqualToButton">LessThanOrEqualTo</button>
     <button id="greaterThanOrEqualToButton">GreaterThanOrEqualTo</button>
+    <button id="belongsToButton">BelongsTo</button>
     <button id="approxEqualToButton">ApproxEqualTo</button>
     <button id="leftAngleBracketButton">LeftAngleBracket</button>
     <button id="rightAngleBracketButton">RightAngleBracket</button>
@@ -289,9 +296,100 @@
     <button id="maxLowerButton">MaxLower</button>
     <button id="minLowerButton">MinLower</button>
     <button id="logLowerButton">LogLower</button>
-    <input type="text" id="rows" /><input type="text" id="cols" />
+    rows: <input type="text" id="rows" /> cols: <input type="text" id="cols" />
     <button id="matrixButton">Matrix</button>
-
+    <button id="dotAccentButton">DotAccent</button>
+    <button id="hatAccentButton">HatAccent</button>
+    <button id="vectorAccentButton">VectorAccent</button>
+    <button id="barAccentButton">BarAccent</button>
+    <select id="greek">
+      <option value="&#915;">&#915;</option>
+      <option value="&#916;">&#916;</option>
+      <option value="&#920;">&#920;</option>
+      <option value="&#923;">&#923;</option>
+      <option value="&#926;">&#926;</option>
+      <option value="&#928;">&#928;</option>
+      <option value="&#931;">&#931;</option>
+      <option value="&#933;">&#933;</option>
+      <option value="&#934;">&#934;</option>
+      <option value="&#936;">&#936;</option>
+      <option value="&#937;">&#937;</option>
+      <option value="&#945;">&#945;</option>
+      <option value="&#946;">&#946;</option>
+      <option value="&#947;">&#947;</option>
+      <option value="&#948;">&#948;</option>
+      <option value="&#949;">&#949;</option>
+      <option value="&#1013;">&#1013;</option>
+      <option value="&#950;">&#950;</option>
+      <option value="&#951;">&#951;</option>
+      <option value="&#952;">&#952;</option>
+      <option value="&#977;">&#977;</option>
+      <option value="&#953;">&#953;</option>
+      <option value="&#954;">&#954;</option>
+      <option value="&#955;">&#955;</option>
+      <option value="&#956;">&#956;</option>
+      <option value="&#957;">&#957;</option>
+      <option value="&#958;">&#958;</option>
+      <option value="&#960;">&#960;</option>
+      <option value="&#982;">&#982;</option>
+      <option value="&#961;">&#961;</option>
+      <option value="&#1009;">&#1009;</option>
+      <option value="&#963;">&#963;</option>
+      <option value="&#962;">&#962;</option>
+      <option value="&#964;">&#964;</option>
+      <option value="&#965;">&#965;</option>
+      <option value="&#966;">&#966;</option>
+      <option value="&#981;">&#981;</option>
+      <option value="&#967;">&#967;</option>
+      <option value="&#968;">&#968;</option>
+      <option value="&#969;">&#969;</option>
+    </select>
+    <button id="greekButton">GreekButton</button>
+  -->
     <div class="testEquation equation"></div>
+    <br>
+    <br>
+    <ul class="nav nav-tabs" id="myTab">
+      <li class="active"><a href="#common">Common</a></li>
+      <li><a href="#brackets">Brackets</a></li>
+      <li><a href="#symbols">Symbols</a></li>
+      <li><a href="#functions">Functions</a></li>
+      <li><a href="#largeOperators">Large Operators</a></li>
+      <li><a href="#integrals">Integrals</a></li>
+      <li><a href="#misc">Misc</a></li>
+    </ul>
+
+    <div id='content' class="tab-content">
+      <div class="tab-pane active" id="common"></div>
+      <div class="tab-pane" id="brackets">
+        <ul class="nav nav-tabs" id="bracketsTab">
+          <li class="active"><a href="#brackets1">Single</a></li>
+          <li><a href="#brackets2">Pairs</a></li>
+        </ul>
+      </div>
+      <div class="tab-pane" id="symbols">
+        <ul class="nav nav-tabs" id="symbolsTab">
+          <li class="active"><a href="#symbols1">Operators</a></li>
+          <li><a href="#symbols2">Greek</a></li>
+          <li><a href="#symbols3">Misc</a></li>
+        </ul>
+      </div>
+      <div class="tab-pane" id="functions">
+        <ul class="nav nav-tabs" id="functionsTab">
+          <li class="active"><a href="#functions1">Trig</a></li>
+          <li><a href="#functions2">Misc</a></li>
+        </ul>
+      </div>
+      <div class="tab-pane" id="largeOperators">
+        <ul class="nav nav-tabs" id="largeOperatorsTab">
+          <li class="active"><a href="#home1"><img src="http://upload.wikimedia.org/wikipedia/commons/7/79/Vanamo_Logo.svg" height="50"></a></li>
+          <li><a href="#home2">Home 2</a></li>
+          <li><a href="#home3">Home 3</a></li>
+        </ul>
+      </div>
+      <div class="tab-pane" id="integrals"></div>
+      <div class="tab-pane" id="misc"></div>
+    </div>    
+
 </body>
 </html>

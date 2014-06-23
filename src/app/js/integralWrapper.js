@@ -14,6 +14,18 @@ eqEd.IntegralWrapper = function(isInline, hasUpperLimit, hasLowerLimit, integral
     this.inlineLowerLimitOverlap = 0.25;
     this.inlineLimitGap = 0.15;
 
+    this.numIntegrals = 0;
+    if (this.integralType === "single"
+        || this.integralType === "singleContour") {
+        this.numIntegrals = 1;
+    } else if (this.integralType === "double"
+        || this.integralType === "doubleContour") {
+        this.numIntegrals = 2;
+    } else if (this.integralType === "triple"
+        || this.integralType === "tripleContour") {
+        this.numIntegrals = 3;
+    }
+
     this.integralSymbolCtors = {
         'single': eqEd.IntegralSymbol,
         'double': eqEd.DoubleIntegralSymbol,
@@ -164,7 +176,7 @@ eqEd.IntegralWrapper = function(isInline, hasUpperLimit, hasLowerLimit, integral
     eqEd.IntegralWrapper.prototype.constructor = eqEd.IntegralWrapper;
     eqEd.IntegralWrapper.prototype.buildDomObj = function() {
         return new eqEd.WrapperDom(this,
-            '<div class="wrapper integralWrapper"></div>')
+            '<div class="eqEdWrapper integralWrapper"></div>')
     }
     eqEd.IntegralWrapper.prototype.clone = function() {
         var copy = new this.constructor(this.isInline, this.hasUpperLimit, this.hasLowerLimit, this.integralType, this.symbolSizeConfig);

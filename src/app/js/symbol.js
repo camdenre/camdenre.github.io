@@ -16,7 +16,6 @@ eqEd.Symbol = function(character, fontStyle, symbolSizeConfig) {
             this.adjustTop = 0.025;
         }
     }
-    
     // Set up the width calculation
     var width = 0;
     this.properties.push(new Property(this, "width", width, {
@@ -30,6 +29,17 @@ eqEd.Symbol = function(character, fontStyle, symbolSizeConfig) {
             return this.symbolSizeConfig.width[this.character][this.fontStyle][this.parent.parent.fontSize];
         },
         updateDom: function() {
+            // This doesn't really belong here, but it is a convenient callback
+            if (this.parent !== null 
+                &&this.parent.parent.parent instanceof eqEd.AccentContainer) {
+                if (this.character === 'i') {
+                    this.character = '&#305;';
+                    this.domObj = this.buildDomObj();
+                } else if (this.character === 'j') {
+                    this.character = '&#567;';
+                    this.domObj = this.buildDomObj();
+                }
+            }
             this.domObj.updateWidth(this.width);
         }
     }));
