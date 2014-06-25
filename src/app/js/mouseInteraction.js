@@ -209,6 +209,10 @@ var onMouseDown = function(self, e) {
     }
 }
 
+$(document).on('mousedown', '.tabs', function(e) {
+    e.stopPropagation();
+});
+
 $(document).on('mousedown', '.eqEdContainer', function(e) {
     onMouseDown(this, e);
 });
