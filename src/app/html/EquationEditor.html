@@ -167,67 +167,10 @@
   <script src="../js/addWrapperUtil.js"></script>
   <script src="../js/keyboardInteraction.js"></script>
   <script src="../js/menuInteraction.js"></script>
+  <script src="../js/clipboard.js"></script>
   <script src="../js/equationEditor.js"></script>
 </head>
 <body>
-  <!--
-    
-    <button id="lessThanOrEqualToButton">LessThanOrEqualTo</button>
-    <button id="greaterThanOrEqualToButton">GreaterThanOrEqualTo</button>
-    <button id="belongsToButton">BelongsTo</button>
-    <button id="approxEqualToButton">ApproxEqualTo</button>
-
-
-
-    <button id="partialDifferentialButton">PartialDifferential</button>
-
-
-    rows: <input type="text" id="rows" /> cols: <input type="text" id="cols" />
-    <button id="matrixButton">Matrix</button>
-    <select id="greek">
-      <option value="&#915;">&#915;</option>
-      <option value="&#916;">&#916;</option>
-      <option value="&#920;">&#920;</option>
-      <option value="&#923;">&#923;</option>
-      <option value="&#926;">&#926;</option>
-      <option value="&#928;">&#928;</option>
-      <option value="&#931;">&#931;</option>
-      <option value="&#933;">&#933;</option>
-      <option value="&#934;">&#934;</option>
-      <option value="&#936;">&#936;</option>
-      <option value="&#937;">&#937;</option>
-      <option value="&#945;">&#945;</option>
-      <option value="&#946;">&#946;</option>
-      <option value="&#947;">&#947;</option>
-      <option value="&#948;">&#948;</option>
-      <option value="&#949;">&#949;</option>
-      <option value="&#1013;">&#1013;</option>
-      <option value="&#950;">&#950;</option>
-      <option value="&#951;">&#951;</option>
-      <option value="&#952;">&#952;</option>
-      <option value="&#977;">&#977;</option>
-      <option value="&#953;">&#953;</option>
-      <option value="&#954;">&#954;</option>
-      <option value="&#955;">&#955;</option>
-      <option value="&#956;">&#956;</option>
-      <option value="&#957;">&#957;</option>
-      <option value="&#958;">&#958;</option>
-      <option value="&#960;">&#960;</option>
-      <option value="&#982;">&#982;</option>
-      <option value="&#961;">&#961;</option>
-      <option value="&#1009;">&#1009;</option>
-      <option value="&#963;">&#963;</option>
-      <option value="&#962;">&#962;</option>
-      <option value="&#964;">&#964;</option>
-      <option value="&#965;">&#965;</option>
-      <option value="&#966;">&#966;</option>
-      <option value="&#981;">&#981;</option>
-      <option value="&#967;">&#967;</option>
-      <option value="&#968;">&#968;</option>
-      <option value="&#969;">&#969;</option>
-    </select>
-    <button id="greekButton">GreekButton</button>
-  -->
     <div class="testEquation equation"></div>
     <div class="tabs">
         <ul class="outer-tab-links tab-links">
@@ -289,6 +232,7 @@
                 </ul>
                 <div class="tab-content tab-content-nested">
                   <div id="symbolsOperators" class="tab inner active">
+                    <span class="menuItem MathJax_Main" id="colonButton" style="font-size: 45px;">:</span>
                     <span class="menuItem MathJax_Main" id="lessThanOrEqualToButton" style="font-size: 45px;">&#x2264;</span>
                     <span class="menuItem MathJax_Main" id="greaterThanOrEqualToButton" style="font-size: 45px;">&#x2265;</span>
                     <span class="menuItem MathJax_Main" id="circleOperatorButton" style="font-size: 45px;">&#9702;</span>
@@ -305,6 +249,13 @@
                     <span class="menuItem MathJax_Main" id="proptoButton" style="font-size: 45px;">&#8733;</span>
                     <span class="menuItem MathJax_Main" id="precButton" style="font-size: 45px;">&#8826;</span>
                     <span class="menuItem MathJax_Main" id="precEqButton" style="font-size: 45px;">&#10927;</span>
+                    <span class="menuItem MathJax_Main" id="subsetButton" style="font-size: 45px;">&#8834;</span>
+                    <span class="menuItem MathJax_Main" id="subsetEqButton" style="font-size: 45px;">&#8838;</span>
+                    <span class="menuItem MathJax_Main" id="succButton" style="font-size: 45px;">&#8827;</span>
+                    <span class="menuItem MathJax_Main" id="succEqButton" style="font-size: 45px;">&#10928;</span>
+                    <span class="menuItem MathJax_Main" id="perpButton" style="font-size: 45px;">&#8869;</span>
+                    <span class="menuItem MathJax_Main" id="midButton" style="font-size: 45px;">&#8739;</span>
+                    <span class="menuItem MathJax_Main" id="parallelButton" style="font-size: 45px;">&#8741;</span>
                   </div>
                   <div id="symbolsGreek" class="tab inner">
                     <span class="menuItem MathJax_Main" id="gammaUpperButton" style="font-size: 45px;">&#915;</span>
@@ -350,7 +301,8 @@
                     <span class="menuItem MathJax_MathItalic" id="omegaButton" style="font-size: 45px;">&#969;</span>
                   </div>
                   <div id="symbolsMisc" class="tab inner">
-                    This is symbol misc buttons.
+                    <span class="menuItem MathJax_Main" id="partialButton" style="font-size: 45px;">&#8706;</span>
+                    <span class="menuItem MathJax_Main" id="infinityButton" style="font-size: 45px;">&#8734;</span>
                   </div>
                 </div>
             </div>
@@ -525,6 +477,8 @@
                 <img class="menuItem" id="hatAccentButton" src="../../MenuImages/png/hatAccent.png">
                 <img class="menuItem" id="vectorAccentButton" src="../../MenuImages/png/vectorAccent.png">
                 <img class="menuItem" id="barAccentButton" src="../../MenuImages/png/barAccent.png">
+                <div style="display: inline-block">rows: <input type="text" id="rows" /><br> cols: <input type="text" id="cols" /></div>
+                <div class="menuItem" id="matrixButton" style="font-size: 35px; padding: 5px 5px; display: inline-block">Matrix</div>
             </div>
         </div>
     </div>
