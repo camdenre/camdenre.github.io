@@ -139,4 +139,15 @@ eqEd.NthRootWrapper = function(symbolSizeConfig) {
 
         return copy;
     };
+    eqEd.NthRootWrapper.prototype.buildJsonObj = function() {
+        var jsonObj = {
+            type: this.className.substring(5, this.className.length - 7),
+            value: null,
+            operands: {
+                radicand: this.radicandContainer.buildJsonObj(),
+                degree: this.nthRootDegreeContainer.buildJsonObj()
+            }
+        };
+        return jsonObj;
+    };
 })();

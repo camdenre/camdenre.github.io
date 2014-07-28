@@ -125,4 +125,14 @@ eqEd.SquareRootWrapper = function(symbolSizeConfig) {
 
         return copy;
     };
+    eqEd.SquareRootWrapper.prototype.buildJsonObj = function() {
+        var jsonObj = {
+            type: this.className.substring(5, this.className.length - 7),
+            value: null,
+            operands: {
+                radicand: this.radicandContainer.buildJsonObj()
+            }
+        };
+        return jsonObj;
+    };
 })();
