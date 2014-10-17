@@ -171,8 +171,8 @@ div.activeContainer {
 
 .eqEdWrapper {
     z-index: 3;
-    /*overflow-y: hidden;
-    overflow-x: visible;*/
+    overflow-y: hidden;
+    overflow-x: visible;
 }
 
 .activeContainer .topLevelEmptyContainerWrapper {
