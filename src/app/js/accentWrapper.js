@@ -61,13 +61,13 @@ eqEd.AccentWrapper = function(character, fontStyle, symbolSizeConfig) {
                         if (this.accentSymbol.character === '^') {
                             var symbol = this.accentContainer.wrappers[0].symbol;
                             if (symbol.character === 'i') {
-                                symbol.character = '&#305;';
+                                symbol.character = 'ı';
                                 symbol.fontStyle = 'MathJax_MainItalic';
                                 symbol.domObj = symbol.buildDomObj();
                                 symbol.parent.domObj.empty();
                                 symbol.parent.domObj.append(symbol.domObj);
                             } else if (symbol.character === 'j') {
-                                symbol.character = '&#567;';
+                                symbol.character = 'ȷ';
                                 symbol.fontStyle = 'MathJax_MainItalic';
                                 symbol.domObj = symbol.buildDomObj();
                                 symbol.parent.domObj.empty();
@@ -182,4 +182,13 @@ eqEd.AccentWrapper = function(character, fontStyle, symbolSizeConfig) {
         };
         return jsonObj;
     };
+    eqEd.AccentWrapper.constructFromJsonObj = function(jsonObj, symbolSizeConfig) {
+      var accentWrapper = new eqEd.AccentWrapper(jsonObj.value, 'MathJax_Main', symbolSizeConfig);
+      for (var i = 0; i < jsonObj.operands.accentedExpression.length; i++) {
+        var innerWrapperCtor = eqEd.Equation.JsonTypeToConstructor(jsonObj.operands.accentedExpression[i].type);
+        var innerWrapper = innerWrapperCtor.constructFromJsonObj(jsonObj.operands.accentedExpression[i], symbolSizeConfig);
+        accentWrapper.accentContainer.addWrappers([i, innerWrapper]);
+      }
+      return accentWrapper;
+    }
 })();

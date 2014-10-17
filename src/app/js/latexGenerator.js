@@ -1,3 +1,384 @@
-// This code is proprietary, and the property of Camden Reslink.
-// You can request permission to use this code by contacting the author via e-mail (camdenre AT buffalo.edu).
-var generateLatex=function(l){var d="";for(var f=0;f<l.length;f++){var a=l[f];switch(a.type){case"Symbol":d+=symbolToLatex(a);break;case"BigOperator":d+=bigOperatorToLatex(a);break;case"Function":d+=functionToLatex(a);break;case"Bracket":d+=bracketToLatex(a);break;case"Operator":d+=operatorToLatex(a);break;case"BracketPair":d+=bracketPairToLatex(a);break;case"Integral":d+=integralToLatex(a);break;case"Accent":d+=accentToLatex(a);break;case"FunctionLower":d+=functionLowerToLatex(a);break;case"Limit":d+=limitToLatex(a);break;case"LogLower":d+=logLowerToLatex(a);break;case"Matrix":d+=matrixToLatex(a);break;case"NthRoot":d+=nthRootToLatex(a);break;case"SquareRoot":d+=squareRootToLatex(a);break;case"StackedFraction":d+=stackedFractionToLatex(a);break;case"Superscript":d+=superscriptToLatex(a);var h="";while(typeof l[f+1]!=="undefined"&&l[f+1].type==="Superscript"){f++;d=d.substring(0,d.length-1);h+="}";d+=superscriptToLatex(l[f])}d+=h;break;case"Subscript":d+=subscriptToLatex(a);var h="";while(typeof l[f+1]!=="undefined"&&l[f+1].type==="Subscript"){f++;d=d.substring(0,d.length-1);h+="}";d+=subscriptToLatex(l[f])}d+=h;break;case"SuperscriptAndSubscript":var m=[];var k=[];m.push(a.operands.superscript);k.push(a.operands.subscript);while(typeof l[f+1]!=="undefined"&&l[f+1].type==="SuperscriptAndSubscript"){f++;m.push(l[f].operands.superscript);k.push(l[f].operands.subscript)}while(typeof l[f+1]!=="undefined"&&l[f+1].type==="Superscript"){f++;m.push(l[f].operands.superscript)}while(typeof l[f+1]!=="undefined"&&l[f+1].type==="Subscript"){f++;k.push(l[f].operands.subscript)}var c="";var n="";for(var e=0;e<m.length;e++){c+="^{"+generateLatex(m[e]);n+="}"}c+=n;var g="";var b="";for(var e=0;e<k.length;e++){g+="_{"+generateLatex(k[e]);b+="}"}g+=b;d+=c+g;break}}return d};var symbolToLatex=function(b){var a="";var c={"&#8706;":"\\partial","&#8734;":"\\infty","&#915;":"\\Gamma","&#916;":"\\Delta","&#920;":"\\Theta","&#923;":"\\Lambda","&#926;":"\\Xi","&#928;":"\\Pi","&#931;":"\\Sigma","&#933;":"\\Upsilon","&#934;":"\\Phi","&#936;":"\\Psi","&#937;":"\\Omega","&#945;":"\\alpha","&#946;":"\\beta","&#947;":"\\gamma","&#948;":"\\delta","&#949;":"\\varepsilon","&#1013;":"\\epsilon","&#950;":"\\zeta","&#951;":"\\eta","&#952;":"\\theta","&#977;":"\\vartheta","&#953;":"\\iota","&#954;":"\\kappa","&#955;":"\\lambda","&#956;":"\\mu","&#957;":"\\nu","&#958;":"\\xi","&#960;":"\\pi","&#982;":"\\varpi","&#961;":"\\rho","&#1009;":"\\varrho","&#963;":"\\sigma","&#962;":"\\varsigma","&#964;":"\\tau","&#965;":"\\upsilon","&#966;":"\\varphi","&#981;":"\\phi","&#967;":"\\chi","&#968;":"\\psi","&#969;":"\\omega","&#305;":"\\imath","&#567;":"\\jmath"};if(typeof c[b.value]==="undefined"){a=b.value}else{a=c[b.value]}return a};var bigOperatorToLatex=function(d){var a="";var f="";var c="";var e="";if(typeof d.operands.lowerLimit!=="undefined"){f="_{"+generateLatex(d.operands.lowerLimit)+"}"}if(typeof d.operands.upperLimit!=="undefined"){c="^{"+generateLatex(d.operands.upperLimit)+"}"}e=generateLatex(d.operands.operand);var b={sum:"\\sum",bigCap:"\\bigcap",bigCup:"\\bigcup",bigSqCap:"\\sqcap",bigSqCup:"\\bigsqcup",prod:"\\prod",coProd:"\\coprod",bigVee:"\\bigvee",bigWedge:"\\bigwedge"};a=b[d.value]+f+c+e;return a};var functionToLatex=function(b){var a="";a="\\"+b.value;return a};var bracketToLatex=function(c){var a="";var b={leftParenthesisBracket:"\\left(",rightParenthesisBracket:"\\right)",leftSquareBracket:"\\left[",rightSquareBracket:"\\right]",leftCurlyBracket:"\\left\\{",rightCurlyBracket:"\\right\\}",leftAngleBracket:"\\left\\langle",rightAngleBracket:"\\right\\rangle",leftFloorBracket:"\\left\\lfloor",rightFloorBracket:"\\right\\rfloor",leftCeilBracket:"\\left\\lceil",rightCeilBracket:"\\right\\rceil"};a=b[c.value];return a};var operatorToLatex=function(b){var a="";var c={"+":"+","&#x2212;":"-","=":"=","&#60;":"<","&#62;":">","&#x2264;":"\\leq","&#x2265;":"\\geq","&#x2248;":"\\approx","&#8801;":"\\equiv","&#8773;":"\\cong","&#8800;":"\\neq","&#8764;":"\\sim","&#8733;":"\\propto","&#8826;":"\\prec","&#10927;":"\\preceq","&#8834;":"\\subset","&#8838;":"\\subseteq","&#8827;":"\\succ","&#10928;":"\\succeq","&#9702;":"\\circ","&#8712;":"\\in","&#215;":"\\times","&#177;":"\\pm","&#8743;":"\\wedge","&#8744;":"\\vee","&#8869;":"\\perp","&#8739;":"\\mid","&#8741;":"\\parallel",":":":","&#x00f7;":"\\div","&#x22c5;":"\\cdot","=":"="};a=c[b.value];return a};var bracketPairToLatex=function(d){var a="";var c=generateLatex(d.operands.bracketedExpression);var b={parenthesisBracket:"\\left("+c+"\\right)",squareBracket:"\\left["+c+"\\right]",curlyBracket:"\\left\\{"+c+"\\right\\}",angleBracket:"\\left\\langle"+c+"\\right\\rangle",floorBracket:"\\left\\lfloor"+c+"\\right\\rfloor",ceilBracket:"\\left\\lceil"+c+"\\right\\rceil",absValBracket:"\\left|"+c+"\\right|",normBracket:"\\left\\|"+c+"\\right\\|"};a=b[d.value];return a};var integralToLatex=function(d){var a="";var e="";var c="";if(typeof d.operands.lowerLimit!=="undefined"){e="_{"+generateLatex(d.operands.lowerLimit)+"}"}if(typeof d.operands.upperLimit!=="undefined"){c="^{"+generateLatex(d.operands.upperLimit)+"}"}var b={single:"\\int","double":"\\iint",triple:"\\iiint",singleContour:"\\oint",doubleContour:"\\oiint",tripleContour:"\\oiiint"};a=b[d.value]+e+c;return a};var accentToLatex=function(d){var a="";var b="{"+generateLatex(d.operands.accentedExpression)+"}";var c={"&#729;":"\\dot","^":"\\hat","&#8407;":"\\vec","&#175;":"\\bar"};a=c[d.value]+b;return a};var functionLowerToLatex=function(c){var a="";var b="_{"+generateLatex(c.operands.lower)+"}";a="\\"+c.value+b;return a};var limitToLatex=function(c){var a="\\lim";var b="_{"+generateLatex(c.operands.left)+" \\to "+generateLatex(c.operands.right)+"}";a+=b;return a};var logLowerToLatex=function(c){var a="\\log";var b="_{"+generateLatex(c.operands.lower)+"}";a+=b;return a};var matrixToLatex=function(d){var a="\\begin{array}{ccc}";for(var c=0;c<d.operands.elements.length;c++){var f=d.operands.elements[c];var e="";for(var b=0;b<f.length;b++){e+=generateLatex(f[b])+" & "}e=e.substring(0,e.length-2)+"\\\\\r\n";a+=e}a+="\\end{array}";return a};var nthRootToLatex=function(c){var a="\\sqrt";var b="["+generateLatex(c.operands.degree)+"]";var d="{"+generateLatex(c.operands.radicand)+"}";a+=b+d;return a};var squareRootToLatex=function(b){var a="\\sqrt";var c="{"+generateLatex(b.operands.radicand)+"}";a+=c;return a};var stackedFractionToLatex=function(c){var a="\\frac";var b="{"+generateLatex(c.operands.numerator)+"}";var d="{"+generateLatex(c.operands.denominator)+"}";a+=b+d;return a};var subscriptToLatex=function(c){var a="";var b="_{"+generateLatex(c.operands.subscript)+"}";a+=b;return a};var superscriptToLatex=function(c){var a="";var b="^{"+generateLatex(c.operands.superscript)+"}";a+=b;return a};
+var generateLatex = function(expr) {
+	var latexString = '';
+	for (var i = 0; i < expr.length; i++) {
+		var wrapper = expr[i];
+		switch (wrapper.type) {
+			case "Symbol":
+				latexString += symbolToLatex(wrapper);
+				break;
+			case "BigOperator":
+				latexString += bigOperatorToLatex(wrapper);
+				break;
+			case "Function":
+				latexString += functionToLatex(wrapper);
+				break;
+			case "Bracket":
+				latexString += bracketToLatex(wrapper);
+				break;
+			case "Operator":
+				latexString += operatorToLatex(wrapper);
+				break;
+			case "BracketPair":
+				latexString += bracketPairToLatex(wrapper);
+				break;
+			case "Integral":
+				latexString += integralToLatex(wrapper);
+				break;
+			case "Accent":
+				latexString += accentToLatex(wrapper);
+				break;
+			case "FunctionLower":
+				latexString += functionLowerToLatex(wrapper);
+				break;
+			case "Limit":
+				latexString += limitToLatex(wrapper);
+				break;
+			case "LogLower":
+				latexString += logLowerToLatex(wrapper);
+				break;
+			case "Matrix":
+				latexString += matrixToLatex(wrapper);
+				break;
+			case "NthRoot":
+				latexString += nthRootToLatex(wrapper);
+				break;
+			case "SquareRoot":
+				latexString += squareRootToLatex(wrapper);
+				break;
+			case "StackedFraction":
+				latexString += stackedFractionToLatex(wrapper);
+				break;
+			case "Superscript":
+				latexString += superscriptToLatex(wrapper);
+				var endBraces = '';
+				while (typeof expr[i + 1] !== "undefined" && expr[i + 1].type === "Superscript") {
+					i++;
+					latexString = latexString.substring(0, latexString.length - 1);
+					endBraces += '}';
+					latexString += superscriptToLatex(expr[i]);
+				}
+				latexString += endBraces;
+				break;
+			case "Subscript":
+				latexString += subscriptToLatex(wrapper);
+				var endBraces = '';
+				while (typeof expr[i + 1] !== "undefined" && expr[i + 1].type === "Subscript") {
+					i++;
+					latexString = latexString.substring(0, latexString.length - 1);
+					endBraces += '}';
+					latexString += subscriptToLatex(expr[i]);
+				}
+				latexString += endBraces;
+				break;
+			case "SuperscriptAndSubscript":
+				var superscripts = [];
+				var subscripts = [];
+				superscripts.push(wrapper.operands.superscript);
+				subscripts.push(wrapper.operands.subscript);
+				while (typeof expr[i + 1] !== "undefined" && expr[i + 1].type === "SuperscriptAndSubscript") {
+					i++;
+					superscripts.push(expr[i].operands.superscript);
+					subscripts.push(expr[i].operands.subscript);
+				}
+				while (typeof expr[i + 1] !== "undefined" && expr[i + 1].type === "Superscript") {
+					i++;
+					superscripts.push(expr[i].operands.superscript);
+				}
+				while (typeof expr[i + 1] !== "undefined" && expr[i + 1].type === "Subscript") {
+					i++;
+					subscripts.push(expr[i].operands.subscript);
+				}
+				var supString = '';
+				var supEndBraces = '';
+				for (var j = 0; j < superscripts.length; j++) {
+					supString += '^{' + generateLatex(superscripts[j]);
+					supEndBraces += '}';
+				}
+				supString += supEndBraces;
+				var subString = '';
+				var subEndBraces = '';
+				for (var j = 0; j < subscripts.length; j++) {
+					subString += '_{' + generateLatex(subscripts[j]);
+					subEndBraces += '}';
+				}
+				subString += subEndBraces;
+				latexString += supString + subString;
+				break;
+		}
+	}
+	return latexString;
+}
+
+var symbolToLatex = function(expr) {
+	var latexString = '';
+	var symbolToLatexMapping = {
+		'∂': '\\partial',
+		'∞': '\\infty',
+		'Γ': '\\Gamma',
+		'Δ': '\\Delta',
+		'Θ': '\\Theta',
+		'Λ': '\\Lambda',
+		'Ξ': '\\Xi',
+		'Π': '\\Pi',
+		'Σ': '\\Sigma',
+		'Υ': '\\Upsilon',
+		'Φ': '\\Phi',
+		'Ψ': '\\Psi',
+		'Ω': '\\Omega',
+		'α': '\\alpha',
+		'β': '\\beta',
+		'γ': '\\gamma',
+		'δ': '\\delta',
+		'ε': '\\varepsilon',
+		'ϵ': '\\epsilon',
+		'ζ': '\\zeta',
+		'η': '\\eta',
+		'θ': '\\theta',
+		'ϑ': '\\vartheta',
+		'ι': '\\iota',
+		'κ': '\\kappa',
+		'λ': '\\lambda',
+		'μ': '\\mu',
+		'ν': '\\nu',
+		'ξ': '\\xi',
+		'π': '\\pi',
+		'ϖ': '\\varpi',
+		'ρ': '\\rho',
+		'ϱ': '\\varrho',
+		'σ': '\\sigma',
+		'ς': '\\varsigma',
+		'τ': '\\tau',
+		'υ': '\\upsilon',
+		'φ': '\\varphi',
+		'ϕ': '\\phi',
+		'χ': '\\chi',
+		'ψ': '\\psi',
+		'ω': '\\omega',
+		'ı': '\\imath',
+		'ȷ': '\\jmath'
+	}
+	if (typeof symbolToLatexMapping[expr.value] === 'undefined') {
+		latexString = expr.value;
+	} else {
+		latexString = symbolToLatexMapping[expr.value];
+	}
+	return latexString;
+}
+
+var bigOperatorToLatex = function(expr) {
+	var latexString = '';
+	var lowerLimitString = '';
+	var upperLimitString = '';
+	var operandString = '';
+	if (typeof expr.operands.lowerLimit !== "undefined") {
+		lowerLimitString = '_{' + generateLatex(expr.operands.lowerLimit) + '}';
+	}
+	if (typeof expr.operands.upperLimit !== "undefined") {
+		upperLimitString = '^{' + generateLatex(expr.operands.upperLimit) + '}';
+	}
+	operandString = generateLatex(expr.operands.operand);
+	var bigOperatorToLatexMapping = {
+        sum: '\\sum',
+        bigCap: '\\bigcap',
+        bigCup: '\\bigcup',
+        bigSqCap: '\\sqcap',
+        bigSqCup: '\\bigsqcup',
+        prod: '\\prod',
+        coProd: '\\coprod',
+        bigVee: '\\bigvee',
+        bigWedge: '\\bigwedge'
+	}
+	latexString = bigOperatorToLatexMapping[expr.value] + lowerLimitString + upperLimitString + operandString;
+	return latexString;
+}
+
+var functionToLatex = function(expr) {
+	var latexString = '';
+	latexString = '\\' + expr.value;
+	return latexString;
+}
+
+var bracketToLatex = function(expr) {
+	var latexString = '';
+	var bracketToLatexMapping = {
+        leftParenthesisBracket: '\\left(',
+        rightParenthesisBracket: '\\right)',
+        leftSquareBracket: '\\left[',
+        rightSquareBracket: '\\right]',
+        leftCurlyBracket: '\\left\\{',
+        rightCurlyBracket: '\\right\\}',
+        leftAngleBracket: '\\left\\langle',
+        rightAngleBracket: '\\right\\rangle',
+        leftFloorBracket: '\\left\\lfloor',
+        rightFloorBracket: '\\right\\rfloor',
+        leftCeilBracket: '\\left\\lceil',
+        rightCeilBracket: '\\right\\rceil'
+    };
+    latexString = bracketToLatexMapping[expr.value];
+	return latexString;
+}
+
+var operatorToLatex = function(expr) {
+	var latexString = '';
+	var operatorToLatexMapping = {
+		'+': '+',
+		'−': '-',
+		'=': '=',
+		'<': '<',
+		'>': '>',
+		'≤': '\\leq',
+		'≥': '\\geq',
+		'≈': '\\approx',
+		'≡': '\\equiv',
+		'≅': '\\cong',
+		'≠': '\\neq',
+		'∼': '\\sim',
+		'∝': '\\propto',
+		'≺': '\\prec',
+		'⪯': '\\preceq',
+		'⊂': '\\subset',
+		'⊆': '\\subseteq',
+		'≻': '\\succ',
+		'⪰': '\\succeq',
+		'◦': '\\circ',
+		'∈': '\\in',
+		'×': '\\times',
+		'±': '\\pm',
+		'∧': '\\wedge',
+		'∨': '\\vee',
+		'⊥': '\\perp',
+		'∣': '\\mid',
+		'∥': '\\parallel',
+		':': ':',
+		'÷': '\\div',
+		'⋅': '\\cdot',
+		'=': '='
+	};
+	latexString = operatorToLatexMapping[expr.value];
+	return latexString;
+}
+
+var bracketPairToLatex = function(expr) {
+	var latexString = '';
+	var bracketedExpression = generateLatex(expr.operands.bracketedExpression);
+	var bracketPairToLatexMapping = {
+        "parenthesisBracket": '\\left(' + bracketedExpression + '\\right)',
+        "squareBracket": '\\left[' + bracketedExpression + '\\right]',
+        "curlyBracket": '\\left\\{' + bracketedExpression + '\\right\\}',
+        "angleBracket": '\\left\\langle' + bracketedExpression + '\\right\\rangle',
+        "floorBracket": '\\left\\lfloor' + bracketedExpression + '\\right\\rfloor',
+        "ceilBracket": '\\left\\lceil' + bracketedExpression + '\\right\\rceil',
+        "absValBracket": '\\left|' + bracketedExpression + '\\right|',
+        "normBracket": '\\left\\|' + bracketedExpression + '\\right\\|'
+    };
+    latexString = bracketPairToLatexMapping[expr.value];
+	return latexString;
+}
+
+var integralToLatex = function(expr) {
+	var latexString = '';
+	var lowerLimitString = '';
+	var upperLimitString = '';
+	if (typeof expr.operands.lowerLimit !== "undefined") {
+		lowerLimitString = '_{' + generateLatex(expr.operands.lowerLimit) + '}';
+	}
+	if (typeof expr.operands.upperLimit !== "undefined") {
+		upperLimitString = '^{' + generateLatex(expr.operands.upperLimit) + '}';
+	}
+	var integralToLatexMapping = {
+        'single': '\\int',
+        'double': '\\iint',
+        'triple': '\\iiint',
+        'singleContour': '\\oint',
+        'doubleContour': '\\oiint',
+        'tripleContour': '\\oiiint'
+	};
+	latexString = integralToLatexMapping[expr.value] + lowerLimitString + upperLimitString;
+	return latexString;
+}
+
+var accentToLatex = function(expr) {
+	var latexString = '';
+	var accentedExpression = '{' + generateLatex(expr.operands.accentedExpression) + '}';
+	var accentToLatexMapping = {
+		'˙': '\\dot',
+		'^': '\\hat',
+		'⃗': '\\vec',
+		'¯': '\\bar'
+	}
+	latexString = accentToLatexMapping[expr.value] + accentedExpression;
+	return latexString;
+}
+
+var functionLowerToLatex = function(expr) {
+	var latexString = '';
+	var lower = '_{' + generateLatex(expr.operands.lower) + '}';
+	latexString = '\\' + expr.value + lower;
+	return latexString;
+}
+
+var limitToLatex = function(expr) {
+	var latexString = '\\lim';
+	var lower = '_{' + generateLatex(expr.operands.left) + ' \\to ' + generateLatex(expr.operands.right) + '}';
+	latexString += lower;
+	return latexString;
+}
+
+var logLowerToLatex = function(expr) {
+	var latexString = '\\log';
+	var lower = '_{' + generateLatex(expr.operands.lower) + '}';
+	latexString += lower;
+	return latexString;
+}
+
+var matrixToLatex = function(expr) {
+	var latexString = '\\begin{array}{ccc}';
+	for (var j = 0; j < expr.operands.elements.length; j++) {
+		var row = expr.operands.elements[j];
+		var rowString = '';
+		for (var k = 0; k < row.length; k++) {
+			rowString += generateLatex(row[k]) + ' & ';
+		}
+		rowString = rowString.substring(0, rowString.length - 2) + '\\\\\r\n';
+		latexString += rowString;
+	}
+	latexString += '\\end{array}';
+	return latexString;
+}
+
+var nthRootToLatex = function(expr) {
+	var latexString = '\\sqrt';
+	var degree = '[' + generateLatex(expr.operands.degree) + ']';
+	var radicand = '{' + generateLatex(expr.operands.radicand) + '}';
+	latexString += degree + radicand;
+	return latexString;
+}
+
+var squareRootToLatex = function(expr) {
+	var latexString = '\\sqrt';
+	var radicand = '{' + generateLatex(expr.operands.radicand) + '}';
+	latexString += radicand;
+	return latexString;
+}
+
+var stackedFractionToLatex = function(expr) {
+	var latexString = '\\frac';
+	var numerator = '{' + generateLatex(expr.operands.numerator) + '}';
+	var denominator = '{' + generateLatex(expr.operands.denominator) + '}';
+	latexString += numerator + denominator;
+	return latexString;
+}
+
+var subscriptToLatex = function(expr) {
+	var latexString = '';
+	var subscript = '_{' + generateLatex(expr.operands.subscript) + '}';
+	latexString += subscript;
+	return latexString;
+}
+
+var superscriptToLatex = function(expr) {
+	var latexString = '';
+	var superscript = '^{' + generateLatex(expr.operands.superscript) + '}';
+	latexString += superscript;
+	return latexString;
+}

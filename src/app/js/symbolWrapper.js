@@ -158,4 +158,16 @@ eqEd.SymbolWrapper = function(character, fontStyle, symbolSizeConfig) {
         };
         return jsonObj;
     };
+    eqEd.SymbolWrapper.constructFromJsonObj = function(jsonObj, symbolSizeConfig) {
+        var fontStyle = "";
+        if (_.indexOf(symbolSizeConfig.MathJax_MathItalic, jsonObj.value) !== -1) {
+            fontStyle = "MathJax_MathItalic";
+        } else if (_.indexOf(symbolSizeConfig.MathJax_Main, jsonObj.value) !== -1) {
+            fontStyle = "MathJax_Main";
+        } else if (_.indexOf(symbolSizeConfig.MathJax_MainItalic, jsonObj.value) !== -1) {
+            fontStyle = "MathJax_MainItalic";
+        }
+        var symbolWrapper = new eqEd.SymbolWrapper(jsonObj.value, fontStyle, symbolSizeConfig);
+        return symbolWrapper;
+    }
 })();

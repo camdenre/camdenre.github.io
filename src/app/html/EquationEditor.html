@@ -167,7 +167,7 @@
   <script src="../js/menuInteraction.js"></script>
   <script src="../js/clipboard.js"></script>
   <script src="../js/equationEditor.js"></script>
-   <script src="../js/latexGenerator.js"></script>
+  <script src="../js/latexGenerator.js"></script>
   <link href="../../Fonts/TeX/font.css" rel="stylesheet" type="text/css" charset="utf-8" />
   <link href="../css/equationEditor.css" rel="stylesheet" type="text/css" charset="utf-8" />
 </head>
@@ -500,5 +500,29 @@
         $('#ContentLatex').html(generateLatex(jsonObj));
       });
     </script>
+    <textarea id="TextJSON"></textarea>
+    <br>
+    <button id="JSONtoEqEd">Render Equation</button>
+    <script>
+      $('#JSONtoEqEd').on('click', function(e) {
+        var jsonObj = $.parseJSON($('#TextJSON').val());
+        var container = new eqEd.Container(symbolSizeConfig);
+        container.padTop = 0.2;
+        container.padBottom = 0.2;
+        container.fontSize = "fontSizeNormal";
+        container.domObj = container.buildDomObj();
+        container.domObj.updateFontSize(container.fontSize);
+        container.domObj.value.addClass('equation');
+        $('#renderedEq').empty();
+        $('#renderedEq').append(container.domObj.value);
+        for (var i = 0; i < jsonObj.length; i++) {
+          var innerWrapperCtor = eqEd.Equation.JsonTypeToConstructor(jsonObj[i].type);
+          var innerWrapper = innerWrapperCtor.constructFromJsonObj(jsonObj[i], symbolSizeConfig);
+          container.addWrappers([i, innerWrapper]);
+        }
+        container.updateAll();
+      });
+    </script>
+    <div id="renderedEq"></div>
 </body>
 </html>

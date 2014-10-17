@@ -7,15 +7,17 @@ eqEd.Symbol = function(character, fontStyle, symbolSizeConfig) {
     this.domObj = this.buildDomObj();
     if (IEVersion >= 9) {
         if (this.fontStyle === "MathJax_MathItalic") {
-            this.adjustTop = 0.345;
+            //this.adjustTop = 0.345;
+            this.adjustTop = 0.33
         } else {
-            if (this.character !== '&#9702;') {
+            if (this.character !== '◦') {
                 this.adjustTop = 0.3;
             }
         }
     } else {
         if (this.fontStyle === "MathJax_MathItalic") {
-            this.adjustTop = 0.025;
+            //this.adjustTop = 0.025;
+            this.adjustTop = 0.05
         }
     }
     // Set up the width calculation
@@ -35,10 +37,10 @@ eqEd.Symbol = function(character, fontStyle, symbolSizeConfig) {
             if (this.parent !== null 
                 &&this.parent.parent.parent instanceof eqEd.AccentContainer) {
                 if (this.character === 'i') {
-                    this.character = '&#305;';
+                    this.character = 'ı';
                     this.domObj = this.buildDomObj();
                 } else if (this.character === 'j') {
-                    this.character = '&#567;';
+                    this.character = 'ȷ';
                     this.domObj = this.buildDomObj();
                 }
             }
