@@ -159,6 +159,7 @@ div.squareCursor {
 .eqEdContainer {
     cursor: text;
     z-index: 3;
+    overflow: hidden;
 }
 
 div.activeContainer {
