@@ -159,7 +159,7 @@ div.squareCursor {
 .eqEdContainer {
     cursor: text;
     z-index: 3;
-    overflow: hidden;
+    overflow-x: visible;
 }
 
 div.activeContainer {
@@ -173,9 +173,9 @@ div.activeContainer {
 
 .eqEdWrapper {
     z-index: 3;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
-
+/*
 .bracketWrapper {
     overflow: hidden;
 }
@@ -183,7 +183,7 @@ div.activeContainer {
 .symbolWrapper {
     overflow: visible;
 }
-
+*/
 .activeContainer .topLevelEmptyContainerWrapper {
     background: #CFCFCF;
 }
