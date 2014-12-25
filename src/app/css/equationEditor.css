@@ -2,7 +2,7 @@
     position: relative;
     line-height: 1;
     /*overflow: visible;*/
-    overflow: hidden;
+    /*overflow: hidden;*/
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;
@@ -171,10 +171,14 @@ div.activeContainer {
 
 .eqEdWrapper {
     z-index: 3;
+    /*overflow: hidden;*/
+}
+
+.bracketWrapper {
     overflow: hidden;
 }
 
-.symbol {
+.symbolWrapper {
     overflow: visible;
 }
 
