@@ -26,8 +26,8 @@ eqEd.BracketWrapper = function(bracketType, symbolSizeConfig) {
 
     this.childNoncontainers = [this.bracket];
 
-    //this.padTop = 0.1;
-    //this.padBottom = 0.1;
+    this.padTop = 0.05;
+    this.padBottom = 0.15;
 
     // Set up the width calculation
     var width = 0;
@@ -56,7 +56,13 @@ eqEd.BracketWrapper = function(bracketType, symbolSizeConfig) {
             topAlign = value;
         },
         compute: function() {
-            return 0.5 * this.bracket.height;
+            var topAlignVal = 0;
+            if (this.bracket.heightRatio <= 1.5) {
+                topAlignVal = 0.45 * this.bracket.height;
+            } else {
+                topAlignVal = 0.5 * this.bracket.height;
+            }
+            return topAlignVal;
         },
         updateDom: function() {}
     }));
@@ -71,7 +77,13 @@ eqEd.BracketWrapper = function(bracketType, symbolSizeConfig) {
             bottomAlign = value;
         },
         compute: function() {
-            return 0.5 * this.bracket.height;
+            var bottomAlignVal = 0;
+            if (this.bracket.heightRatio <= 1.5) {
+                bottomAlignVal = 0.55 * this.bracket.height;
+            } else {
+                bottomAlignVal = 0.5 * this.bracket.height;
+            }
+            return bottomAlignVal;
         },
         updateDom: function() {}
     }));
