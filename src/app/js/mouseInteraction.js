@@ -184,11 +184,11 @@ var updateHighlightFormatting = function(container, endIndex) {
     }
 }
 
-$(document).on('mousedown', function(e) {
+$(document).on('touchstart mousedown', function(e) {
     clearOnMouseDown();
 });
 
-$(document).on('mouseup', function(e) {
+$(document).on('touchend mouseup', function(e) {
     mouseDown = false;
     if ($('.cursor').length > 0) {
         addBlink();
@@ -209,11 +209,11 @@ var onMouseDown = function(self, e) {
     }
 }
 
-$(document).on('mousedown', '.tabs', function(e) {
+$(document).on('touchstart mousedown', '.tabs', function(e) {
     e.stopPropagation();
 });
 
-$(document).on('mousedown', '.eqEdContainer', function(e) {
+$(document).on('touchstart mousedown', '.eqEdContainer', function(e) {
     onMouseDown(this, e);
 });
 
@@ -308,13 +308,15 @@ $(document).on('mouseleave', '.eqEdContainer', function (e) {
 
 
 /* Touch Events */
-$(document).on( 'touchstart', function(){ /* do something... */ } );
+/*
 
 $(document).on('touchstart', function(e) {
+    $('body').append('<div>Touch Started document!!!</div>');
     clearOnMouseDown();
 });
 
 $(document).on('touchend', function(e) {
+    $('body').append('<div>Touch Ended document!!!</div>');
     mouseDown = false;
     if ($('.cursor').length > 0) {
         addBlink();
@@ -326,5 +328,7 @@ $(document).on('touchstart', '.tabs', function(e) {
 });
 
 $(document).on('touchstart', '.eqEdContainer', function(e) {
+    $('body').append('<div>Touch Started .eqEdContainer!!!</div>');
     onMouseDown(this, e);
 });
+*/
