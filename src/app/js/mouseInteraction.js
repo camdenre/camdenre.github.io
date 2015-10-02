@@ -83,7 +83,7 @@ var addCursor = function(container, characterClickPos) {
         cursor.css('left', cursorLeft);
     }
     container.domObj.value.append(cursor);
-    $('#hiddenFocusInput').focus();
+    $('#hiddenFocusInput').focus().click();
     addBlink();
 };
 
@@ -194,7 +194,7 @@ $(document).on('touchstart mousedown', function(e) {
 $(document).on('touchend mouseup', function(e) {
     mouseDown = false;
     if ($('.cursor').length > 0) {
-        $('#hiddenFocusInput').focus();
+        $('#hiddenFocusInput').focus().click();
         addBlink();
     }
 });
