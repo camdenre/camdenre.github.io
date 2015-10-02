@@ -83,6 +83,7 @@ var addCursor = function(container, characterClickPos) {
         cursor.css('left', cursorLeft);
     }
     container.domObj.value.append(cursor);
+    $('#hiddenFocusInput').focus();
     addBlink();
 };
 
@@ -124,6 +125,7 @@ var addCursorAtIndex = function(container, index) {
         cursor.css('left', cursorLeft);
     }
     container.domObj.value.append(cursor);
+    $('#hiddenFocusInput').focus();
     addBlink();
 };
 
