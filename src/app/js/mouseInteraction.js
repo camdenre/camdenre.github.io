@@ -30,6 +30,7 @@ var clearOnMouseDown = function() {
 var moveHiddenInput = function() {
     $('#hiddenFocusInput').css('left', $('.cursor').first().offset().left);
     $('#hiddenFocusInput').css('top', $('.cursor').first().offset().top);
+    $('#hiddenFocusInput').focus().click();
 };
 
 var calculateIndex = function(offsetLeft) {
@@ -200,7 +201,6 @@ $(document).on('touchend mouseup', function(e) {
     mouseDown = false;
     if ($('.cursor').length > 0) {
         addBlink();
-        $('#hiddenFocusInput').focus().click();
     }
 });
 
