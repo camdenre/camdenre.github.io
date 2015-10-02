@@ -2,6 +2,7 @@ var mouseDown = false;
 var toggleLines = [];
 var highlightStartIndex = null;
 var highlightEndIndex = null;
+var cursorAlreadyExists = false;
 
 var removeCursor = function() {
     $('.cursor').remove();
@@ -19,6 +20,7 @@ var removeHighlight = function() {
 
 var clearOnMouseDown = function() {
     mouseDown = true;
+    cursorAlreadyExists = false;
     removeCursor();
     removeHighlight();
     clearHighlighted();
@@ -215,10 +217,14 @@ $(document).on('touchstart mousedown', '.tabs', function(e) {
 });
 
 $(document).on('touchstart mousedown', '.eqEdContainer', function(e) {
-    if ($('.cursor').length === 0) {
-        $('#hiddenFocusInput').focus().click();
-    }
     onMouseDown(this, e);
+});
+
+$(document).on('touchend mouseup', '.eqEdContainer', function(e) {
+    if (!cursorAlreadyExists) {
+        $('#hiddenFocusInput').focus().click();
+        cursorAlreadyExists = true;
+    }
 });
 
 $(document).on('mousemove', function(e) {
