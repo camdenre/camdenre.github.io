@@ -202,20 +202,9 @@ var onMouseDown = function(self, e) {
         clearOnMouseDown();
         $(self).addClass('activeContainer');
         var container = $(self).data("eqObject");
-        // addCursor call populates toggleLines array, and highlightStartIndex.
         addHighlight(container);
         var clientX = (typeof e.originalEvent.clientX !== 'undefined') ? e.originalEvent.clientX : e.originalEvent.touches[0].clientX;
-        $('body').append('1: ' + e.originalEvent);
-        $('body').append('2: ' + e.originalEvent.clientX);
-        $('body').append('3: ' + e.originalEvent.touches);
-        $('body').append('4: ' + e.originalEvent.touches.length);
-        $('body').append('5: ' + e.originalEvent.touches[0]);
-        $('body').append('6: ' + e.originalEvent.touches[0].clientX);
-        $('body').append('7: ' + e.originalEvent.changedTouches);
-        $('body').append('8: ' + e.originalEvent.changedTouches.length);
-        $('body').append('9: ' + e.originalEvent.changedTouches[0]);
         var characterClickPos = clientX - container.domObj.value.offset().left;
-        $('body').append('<div>Client-X: ' + clientX + ', Offset Left: ' + container.domObj.value.offset().left + ', Click Position: ' + characterClickPos + '</div>');
         addCursor(container, characterClickPos);
     }
 }
@@ -274,72 +263,10 @@ $(document).on('mouseenter', '.eqEdContainer', function (e) {
         } else {
             $(this).trigger("mousemove");
         }
-    } else {
-        /*
-        var container = $(this).data("eqObject");
-        $('.hoverContainer').removeClass('hoverContainer');
-        if (!($(this).hasClass('activeContainer')) &&
-            !(container.wrappers[0] instanceof eqEd.EmptyContainerWrapper) &&
-            !($('.highlighted').length > 0)) {
-            $(this).addClass('hoverContainer');
-            /*
-            var topVal = parseInt($(this).css('top'), 10);
-            var leftVal = parseInt($(this).css('left'), 10);
-            $(this).css({
-                border: '2px solid #828282',
-                top: (topVal + 2) + 'px',
-                left: (leftVal + 2) + 'px'
-            });
-        }
-        */
     }
 });
 
 $(document).on('mouseleave', '.eqEdContainer', function (e) {
     e.preventDefault();
      e.stopPropagation();
-    if (!mouseDown) {
-        /*
-        var container = $(this).data("eqObject");
-        $('.hoverContainer').removeClass('hoverContainer');
-        var eqObject = container.parent;
-        if (eqObject !== null) {
-            while (!(eqObject instanceof eqEd.Container)) {
-                eqObject = eqObject.parent;
-            }
-            if (!(eqObject.domObj.value.hasClass('activeContainer')) &&
-                !(eqObject.wrappers[0] instanceof eqEd.EmptyContainerWrapper) &&
-                !($('.highlighted').length > 0)) {
-                eqObject.domObj.value.addClass('hoverContainer');
-            }
-        }
-        */
-    }
 });
-
-
-/* Touch Events */
-/*
-
-$(document).on('touchstart', function(e) {
-    $('body').append('<div>Touch Started document!!!</div>');
-    clearOnMouseDown();
-});
-
-$(document).on('touchend', function(e) {
-    $('body').append('<div>Touch Ended document!!!</div>');
-    mouseDown = false;
-    if ($('.cursor').length > 0) {
-        addBlink();
-    }
-});
-
-$(document).on('touchstart', '.tabs', function(e) {
-    e.stopPropagation();
-});
-
-$(document).on('touchstart', '.eqEdContainer', function(e) {
-    $('body').append('<div>Touch Started .eqEdContainer!!!</div>');
-    onMouseDown(this, e);
-});
-*/
