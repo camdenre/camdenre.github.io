@@ -29,6 +29,11 @@ var clearOnMouseDown = function() {
     $('#hiddenFocusInput').blur();
 };
 
+var moveHiddenInput = function() {
+    $('#hiddenFocusInput').css('left', $('.cursor').first().offset().left);
+    $('#hiddenFocusInput').css('top', $('.cursor').first().offset().top);
+};
+
 var calculateIndex = function(offsetLeft) {
     var index = 0;
     var indexSet= false;
@@ -86,6 +91,7 @@ var addCursor = function(container, characterClickPos) {
     }
     container.domObj.value.append(cursor);
     addBlink();
+    moveHiddenInput();
 };
 
 // side effect: populates toggleLines array, and highlightStartIndex.
@@ -127,6 +133,7 @@ var addCursorAtIndex = function(container, index) {
     }
     container.domObj.value.append(cursor);
     addBlink();
+    moveHiddenInput();
 };
 
 var addHighlight = function(container) {
@@ -195,6 +202,7 @@ $(document).on('touchend mouseup', function(e) {
     mouseDown = false;
     if ($('.cursor').length > 0) {
         addBlink();
+        $('#hiddenFocusInput').focus().click();
     }
 });
 
@@ -218,13 +226,6 @@ $(document).on('touchstart mousedown', '.tabs', function(e) {
 
 $(document).on('touchstart mousedown', '.eqEdContainer', function(e) {
     onMouseDown(this, e);
-});
-
-$(document).on('touchend mouseup', '.eqEdContainer', function(e) {
-    if (!cursorAlreadyExists) {
-        $('#hiddenFocusInput').focus().click();
-        cursorAlreadyExists = true;
-    }
 });
 
 $(document).on('mousemove', function(e) {
