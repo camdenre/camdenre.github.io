@@ -288,7 +288,8 @@ $(document).on('scroll', function() {
         currentScrollLeftPosition = $(this).scrollLeft();
     }
 });
-
+/*
 $(document).on('focus', "#hiddenFocusInput", function() {
     focusTriggered = true;
 });
+*/
