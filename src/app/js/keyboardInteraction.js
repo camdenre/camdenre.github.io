@@ -163,7 +163,6 @@ var setupKeyboardEvents = function(symbolSizeConfig, clipboard) {
     });
 
     $(document).on('keydown', function(e) {
-        console.log(e.which);
         if (e.which === 8) {
             // backspace
             var cursor = $('.cursor');

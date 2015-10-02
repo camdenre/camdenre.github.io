@@ -202,7 +202,6 @@ $(document).on('touchend mouseup', function(e) {
     mouseDown = false;
     if ($('.cursor').length > 0) {
         addBlink();
-        $('#hiddenFocusInput').focus().click();
     }
 });
 
@@ -226,6 +225,12 @@ $(document).on('touchstart mousedown', '.tabs', function(e) {
 
 $(document).on('touchstart mousedown', '.eqEdContainer', function(e) {
     onMouseDown(this, e);
+});
+
+$(document).on('touchend mouseup', '.eqEdContainer', function(e) {
+    if (cursorAlreadyExists) {
+        $('#hiddenFocusInput').focus().click();
+    }
 });
 
 $(document).on('mousemove', function(e) {
@@ -280,22 +285,4 @@ $(document).on('mouseenter', '.eqEdContainer', function (e) {
 $(document).on('mouseleave', '.eqEdContainer', function (e) {
     e.preventDefault();
     e.stopPropagation();
-});
-
-var focusTriggered = false;
-var currentScrollTopPosition = 0;
-var currentScrollLeftPosition = 0;
-$(document).on('scroll', function() {
-    if (focusTriggered) {
-        $(document).scrollTop(currentScrollTopPosition);
-        $(document).scrollLeft(currentScrollLeftPosition);
-        focusTriggered = false;
-    } else {
-        currentScrollTopPosition = $(this).scrollTop();
-        currentScrollLeftPosition = $(this).scrollLeft();
-    }
-});
-
-$(document).on('focus', "#hiddenFocusInput", function() {
-    focusTriggered = true;
 });
