@@ -305,3 +305,26 @@ $(document).on('mouseleave', '.eqEdContainer', function (e) {
         */
     }
 });
+
+
+/* Touch Events */
+$(document).on( 'touchstart', function(){ /* do something... */ } );
+
+$(document).on('touchstart', function(e) {
+    clearOnMouseDown();
+});
+
+$(document).on('touchend', function(e) {
+    mouseDown = false;
+    if ($('.cursor').length > 0) {
+        addBlink();
+    }
+});
+
+$(document).on('touchstart', '.tabs', function(e) {
+    e.stopPropagation();
+});
+
+$(document).on('touchstart', '.eqEdContainer', function(e) {
+    onMouseDown(this, e);
+});
