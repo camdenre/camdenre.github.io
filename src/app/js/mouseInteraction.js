@@ -124,7 +124,6 @@ var addCursorAtIndex = function(container, index) {
         cursor.css('left', cursorLeft);
     }
     container.domObj.value.append(cursor);
-    $('#hiddenFocusInput').focus();
     addBlink();
 };
 
@@ -193,7 +192,6 @@ $(document).on('touchstart mousedown', function(e) {
 $(document).on('touchend mouseup', function(e) {
     mouseDown = false;
     if ($('.cursor').length > 0) {
-        $('#hiddenFocusInput').focus().click();
         addBlink();
     }
 });
@@ -217,6 +215,9 @@ $(document).on('touchstart mousedown', '.tabs', function(e) {
 });
 
 $(document).on('touchstart mousedown', '.eqEdContainer', function(e) {
+    if ($('.cursor').length === 0) {
+        $('#hiddenFocusInput').focus().click();
+    }
     onMouseDown(this, e);
 });
 
