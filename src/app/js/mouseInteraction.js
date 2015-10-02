@@ -214,8 +214,8 @@ var onMouseDown = function(self, e) {
         $(self).addClass('activeContainer');
         var container = $(self).data("eqObject");
         addHighlight(container);
-        var clientX = (typeof e.originalEvent.clientX !== 'undefined') ? e.originalEvent.clientX : e.originalEvent.touches[0].clientX;
-        var characterClickPos = clientX - container.domObj.value.offset().left;
+        var xOffset = (typeof e.originalEvent.pageX !== 'undefined') ? e.originalEvent.pageX : e.originalEvent.touches[0].pageX;
+        var characterClickPos = xOffset - container.domObj.value.offset().left;
         addCursor(container, characterClickPos);
     }
 }
