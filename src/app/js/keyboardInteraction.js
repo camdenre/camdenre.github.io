@@ -108,6 +108,7 @@ var setupKeyboardEvents = function(symbolSizeConfig, clipboard) {
     }
 
     Mousetrap.bind(MathJax_MathItalic, function(e, character) {
+        $('body').append("YOOOOOO!!! " + character + "</div>")
         var symbolWrapper = new eqEd.SymbolWrapper(character, "MathJax_MathItalic", symbolSizeConfig);
         insertWrapper(symbolWrapper);
         return false;
