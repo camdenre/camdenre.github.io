@@ -83,7 +83,6 @@ var addCursor = function(container, characterClickPos) {
         cursor.css('left', cursorLeft);
     }
     container.domObj.value.append(cursor);
-    $('#hiddenFocusInput').focus().click();
     addBlink();
 };
 
@@ -288,8 +287,7 @@ $(document).on('scroll', function() {
         currentScrollLeftPosition = $(this).scrollLeft();
     }
 });
-/*
+
 $(document).on('focus', "#hiddenFocusInput", function() {
     focusTriggered = true;
 });
-*/
