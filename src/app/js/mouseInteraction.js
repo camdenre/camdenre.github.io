@@ -20,7 +20,6 @@ var removeHighlight = function() {
 
 var clearOnMouseDown = function() {
     mouseDown = true;
-    cursorAlreadyExists = false;
     removeCursor();
     removeHighlight();
     clearHighlighted();
@@ -196,6 +195,7 @@ var updateHighlightFormatting = function(container, endIndex) {
 
 $(document).on('touchstart mousedown', function(e) {
     clearOnMouseDown();
+    cursorAlreadyExists = false;
 });
 
 $(document).on('touchend mouseup', function(e) {
@@ -228,8 +228,9 @@ $(document).on('touchstart mousedown', '.eqEdContainer', function(e) {
 });
 
 $(document).on('touchend mouseup', '.eqEdContainer', function(e) {
-    if (cursorAlreadyExists) {
+    if (!cursorAlreadyExists) {
         $('#hiddenFocusInput').focus().click();
+        cursorAlreadyExists = true;
     }
 });
 
