@@ -192,12 +192,12 @@ $(document).on('touchstart mousedown', function(e) {
 $(document).on('touchend mouseup', function(e) {
     mouseDown = false;
     if ($('.cursor').length > 0) {
+        $('#hiddenFocusInput').focus();
         addBlink();
     }
 });
 
 var onMouseDown = function(self, e) {
-    $('#hiddenFocusInput').focus();
     if (!$(self).children().first().hasClass('squareEmptyContainerWrapper')) {
         e.preventDefault();
         e.stopPropagation();
@@ -270,5 +270,5 @@ $(document).on('mouseenter', '.eqEdContainer', function (e) {
 
 $(document).on('mouseleave', '.eqEdContainer', function (e) {
     e.preventDefault();
-     e.stopPropagation();
+    e.stopPropagation();
 });
