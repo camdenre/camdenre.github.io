@@ -107,8 +107,34 @@ var setupKeyboardEvents = function(symbolSizeConfig, clipboard) {
         '|': null
     }
 
+    $(document).on('keypress', function(e) {
+        if($('.cursor').length > 0) {
+            var character = String.fromCharCode(e.which);
+            if ($.inArray(character, MathJax_MathItalic) > -1) {
+                var symbolWrapper = new eqEd.SymbolWrapper(character, "MathJax_MathItalic", symbolSizeConfig);
+                insertWrapper(symbolWrapper);
+                return false;
+            } else if ($.inArray(character, MathJax_Main) > -1) {
+                var symbolWrapper = new eqEd.SymbolWrapper(character, "MathJax_Main", symbolSizeConfig);
+                insertWrapper(symbolWrapper);
+                return false;
+            } else if ($.inArray(character, operatorCharacters) > -1) {
+                var operatorWrapper = new eqEd.OperatorWrapper(operatorCharactersMap[character], "MathJax_Main", symbolSizeConfig);
+                insertWrapper(operatorWrapper);
+                return false;
+            } else if ($.inArray(character, bracketCharacters) > -1) {
+                var bracketWrapper = new eqEd.BracketWrapper(bracketCharactersMap[character], symbolSizeConfig);
+                insertWrapper(bracketWrapper);
+                return false;
+            } else if (character === '\\') {
+                var operatorWrapper = new eqEd.OperatorWrapper('∖', "MathJax_Main", symbolSizeConfig);
+                insertWrapper(operatorWrapper);
+                return false;
+            }
+        }
+    });
+/*
     Mousetrap.bind(MathJax_MathItalic, function(e, character) {
-        $('body').append("YOOOOOO!!! " + character + "</div>")
         var symbolWrapper = new eqEd.SymbolWrapper(character, "MathJax_MathItalic", symbolSizeConfig);
         insertWrapper(symbolWrapper);
         return false;
@@ -406,5 +432,5 @@ var setupKeyboardEvents = function(symbolSizeConfig, clipboard) {
             $('.highlighted').removeClass('highlighted');
         }
         return false;
-    });
+    });*/
 };
