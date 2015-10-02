@@ -24,6 +24,7 @@ var clearOnMouseDown = function() {
     clearHighlighted();
     $('.activeContainer').removeClass('activeContainer');
     $('.hoverContainer').removeClass('hoverContainer');
+    $('#hiddenFocusInput').blur();
 };
 
 var calculateIndex = function(offsetLeft) {
@@ -196,6 +197,7 @@ $(document).on('touchend mouseup', function(e) {
 });
 
 var onMouseDown = function(self, e) {
+    $('#hiddenFocusInput').focus();
     if (!$(self).children().first().hasClass('squareEmptyContainerWrapper')) {
         e.preventDefault();
         e.stopPropagation();
