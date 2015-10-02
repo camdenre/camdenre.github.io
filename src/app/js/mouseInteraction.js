@@ -205,6 +205,15 @@ var onMouseDown = function(self, e) {
         // addCursor call populates toggleLines array, and highlightStartIndex.
         addHighlight(container);
         var clientX = (typeof e.originalEvent.clientX !== 'undefined') ? e.originalEvent.clientX : e.originalEvent.touches[0].clientX;
+        $('body').append('1: ' + e.originalEvent);
+        $('body').append('2: ' + e.originalEvent.clientX);
+        $('body').append('3: ' + e.originalEvent.touches);
+        $('body').append('4: ' + e.originalEvent.touches.length);
+        $('body').append('5: ' + e.originalEvent.touches[0]);
+        $('body').append('6: ' + e.originalEvent.touches[0].clientX);
+        $('body').append('7: ' + e.originalEvent.changedTouches);
+        $('body').append('8: ' + e.originalEvent.changedTouches.length);
+        $('body').append('9: ' + e.originalEvent.changedTouches[0]);
         var characterClickPos = clientX - container.domObj.value.offset().left;
         $('body').append('<div>Client-X: ' + clientX + ', Offset Left: ' + container.domObj.value.offset().left + ', Click Position: ' + characterClickPos + '</div>');
         addCursor(container, characterClickPos);
