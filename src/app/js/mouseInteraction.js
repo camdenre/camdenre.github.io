@@ -50,7 +50,7 @@ var addCursor = function(container, characterClickPos) {
     container.domObj.value.addClass('activeContainer');
     var cursor;
     if (container instanceof eqEd.SquareEmptyContainer) {
-        cursor = $('<div class="cursor squareCursor"><input id="hiddenFocusInput" style="width: 0; height: 0; opacity: 0;" type="text" /></div>');
+        cursor = $('<div class="cursor squareCursor"></div>');
     } else {
         var cumulative = 0;
         var cursorLeft = -1;
@@ -79,7 +79,7 @@ var addCursor = function(container, characterClickPos) {
         } else {
             container.domObj.value.children().first().addClass('activeContainer');
         }
-        cursor = $('<div class="cursor normalCursor"><input id="hiddenFocusInput" style="width: 0; height: 0; opacity: 0;" type="text" /></div>');
+        cursor = $('<div class="cursor normalCursor"></div>');
         cursor.css('left', cursorLeft);
     }
     container.domObj.value.append(cursor);
@@ -97,7 +97,7 @@ var addCursorAtIndex = function(container, index) {
     var cursor;
     highlightStartIndex = index;
     if (container instanceof eqEd.SquareEmptyContainer) {
-        cursor = $('<div class="cursor squareCursor"><input id="hiddenFocusInput" style="width: 0; height: 0; opacity: 0;" type="text" /></div>');
+        cursor = $('<div class="cursor squareCursor"></div>');
     } else {
         var cumulative = 0;
         var cursorLeft = -1;
@@ -121,7 +121,7 @@ var addCursorAtIndex = function(container, index) {
             cursorLeft += cumulative;
             cursorLeftSet = true;
         }
-        cursor = $('<div class="cursor normalCursor"><input id="hiddenFocusInput" style="width: 0; height: 0; opacity: 0;" type="text" /></div>');
+        cursor = $('<div class="cursor normalCursor"></div>');
         cursor.css('left', cursorLeft);
     }
     container.domObj.value.append(cursor);
@@ -273,4 +273,22 @@ $(document).on('mouseenter', '.eqEdContainer', function (e) {
 $(document).on('mouseleave', '.eqEdContainer', function (e) {
     e.preventDefault();
     e.stopPropagation();
+});
+
+var focusTriggered = false;
+var currentScrollTopPosition = 0;
+var currentScrollLeftPosition = 0;
+$(document).on('scroll', function() {
+    if (focusTriggered) {
+        $(document).scrollTop(currentScrollTopPosition);
+        $(document).scrollLeft(currentScrollLeftPosition);
+        focusTriggered = false;
+    } else {
+        currentScrollTopPosition = $(this).scrollTop();
+        currentScrollLeftPosition = $(this).scrollLeft();
+    }
+});
+
+$(document).on('focus', "#hiddenFocusInput", function() {
+    focusTriggered = true;
 });
