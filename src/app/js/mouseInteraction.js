@@ -50,7 +50,7 @@ var addCursor = function(container, characterClickPos) {
     container.domObj.value.addClass('activeContainer');
     var cursor;
     if (container instanceof eqEd.SquareEmptyContainer) {
-        cursor = $('<div class="cursor squareCursor"></div>');
+        cursor = $('<div class="cursor squareCursor"><input id="hiddenFocusInput" style="width: 0; height: 0; opacity: 0;" type="text" /></div>');
     } else {
         var cumulative = 0;
         var cursorLeft = -1;
@@ -79,7 +79,7 @@ var addCursor = function(container, characterClickPos) {
         } else {
             container.domObj.value.children().first().addClass('activeContainer');
         }
-        cursor = $('<div class="cursor normalCursor"></div>');
+        cursor = $('<div class="cursor normalCursor"><input id="hiddenFocusInput" style="width: 0; height: 0; opacity: 0;" type="text" /></div>');
         cursor.css('left', cursorLeft);
     }
     container.domObj.value.append(cursor);
@@ -96,7 +96,7 @@ var addCursorAtIndex = function(container, index) {
     var cursor;
     highlightStartIndex = index;
     if (container instanceof eqEd.SquareEmptyContainer) {
-        cursor = $('<div class="cursor squareCursor"></div>');
+        cursor = $('<div class="cursor squareCursor"><input id="hiddenFocusInput" style="width: 0; height: 0; opacity: 0;" type="text" /></div>');
     } else {
         var cumulative = 0;
         var cursorLeft = -1;
@@ -120,7 +120,7 @@ var addCursorAtIndex = function(container, index) {
             cursorLeft += cumulative;
             cursorLeftSet = true;
         }
-        cursor = $('<div class="cursor normalCursor"></div>');
+        cursor = $('<div class="cursor normalCursor"><input id="hiddenFocusInput" style="width: 0; height: 0; opacity: 0;" type="text" /></div>');
         cursor.css('left', cursorLeft);
     }
     container.domObj.value.append(cursor);
