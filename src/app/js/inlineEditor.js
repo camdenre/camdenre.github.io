@@ -1,15 +1,7 @@
 var insertEquationAtCursor = function() {
-    var container = new eqEd.Container(symbolSizeConfig);
-    container.padTop = 0.2;
-    container.padBottom = 0.2;
-    container.fontSize = "fontSizeNormal";
-    container.domObj = container.buildDomObj();
-    container.domObj.updateFontSize(container.fontSize);
-    container.domObj.value.addClass('equation');
-    insertNodeAtCursor(container.domObj.value[0]);
-    var topLevelEmptyContainerWrapper = new eqEd.TopLevelEmptyContainerWrapper(symbolSizeConfig);
-    container.addWrappers([0, topLevelEmptyContainerWrapper]);
-    topLevelEmptyContainerWrapper.updateAll();
+    var equation = new eqEd.Equation();
+    insertNodeAtCursor(equation.domObj.value[0]);
+    equation.updateAll();
 }
 
 $(document).on('click', '#insertEquation', function(e) {
@@ -17,19 +9,19 @@ $(document).on('click', '#insertEquation', function(e) {
   insertEquationAtCursor();
 });
 
-var symbolSizeConfig = null;
+var fontMetrics = null;
 var clipboard = null;
 var fontsLoaded = false;
 var imagesLoaded = false;
 
 var setup = function() {
     if (fontsLoaded && imagesLoaded) {
-        symbolSizeConfig = new eqEd.SymbolSizeConfiguration();
+        fontMetrics = new eqEd.FontMetrics();
         $('.loadingMessage').remove();
         clipboard = new eqEd.Clipboard();
-        inializePropertyHooks(symbolSizeConfig);
-        setupKeyboardEvents(symbolSizeConfig, clipboard);
-        setupMenuEvents(symbolSizeConfig);
+        initializePropertyHooks(fontMetrics);
+        setupKeyboardEvents(fontMetrics, clipboard);
+        setupMenuEvents(fontMetrics);
     }
 }
 

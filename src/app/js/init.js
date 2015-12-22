@@ -30,7 +30,6 @@ var getChromeVersion = function() {
   }
 }
 
-//var ChromeVersion = parseInt(window.navigator.appVersion.match(/Chrome\/(\d+)\./)[1], 10);
 var ChromeVersion = getChromeVersion();
 var IEVersion = getInternetExplorerVersion();
 
@@ -110,6 +109,11 @@ Array.prototype.contains = function(value) {
   return this.indexOf(value) > -1;
 }
 
+var randomIntFromInterval = function(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
 var insertNodeAtCursor = function(node) {
     var sel, range, html;
     if (window.getSelection) {
@@ -124,7 +128,7 @@ var insertNodeAtCursor = function(node) {
     }
 }
 
-var inializePropertyHooks = function(symbolSizeConfig) {
+var initializePropertyHooks = function() {
   // Set up some general rules for computing property values.
   Property.postComputeHooks['width'] = function(value) {
     if (typeof value === "undefined" || value === null) {
@@ -138,15 +142,6 @@ var inializePropertyHooks = function(symbolSizeConfig) {
       value = 0;
     }
     var fontHeight = this.getFontHeight();
-
-    // TODO: Figure out why this special case is in here. It has a funny code smell.
-    if (this instanceof eqEd.Container) {
-      if (this.wrappers[0] instanceof eqEd.TopLevelEmptyContainerWrapper) {
-        return value;
-      }
-    } else if (this instanceof eqEd.Wrapper) {
-      return value;
-    }
     return value + (this.padTop + this.padBottom) * fontHeight;
   };
   Property.postComputeHooks['left'] = function(value) {
@@ -173,9 +168,6 @@ var inializePropertyHooks = function(symbolSizeConfig) {
       value = 0;
     }
     var fontHeight = this.getFontHeight();
-    if (this instanceof eqEd.TopLevelEmptyContainerWrapper) {
-      return value;
-    }
     return value + (this.parent.padTop + this.adjustTop) * fontHeight;
   };
   Property.postComputeHooks['topAlign'] = function(value) {

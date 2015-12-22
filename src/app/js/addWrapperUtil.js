@@ -35,7 +35,8 @@ var insertWrapper = function(wrapper) {
             for (var i = 0; i < deleteWrappers.length; i++) {
                 var deleteWrapperIndex = deleteWrappers[i] + 1;
                 var deleteWrapper = container.wrappers[deleteWrapperIndex];
-                copiedWrappers.push([i, deleteWrapper.clone()]);
+                var copiedWrapper = deleteWrapper.clone();
+                copiedWrappers.push([i, copiedWrapper]);
             }
             eqEd.Container.prototype.removeWrappers.apply(container, _.map(deleteWrappers, function(num){ return num + 1; }));
             eqEd.Container.prototype.addWrappers.apply(wrapper.childContainers[0], copiedWrappers);

@@ -1,30 +1,16 @@
-var symbolSizeConfig = null;
-var clipboard = null;
 var fontsLoaded = false;
 var imagesLoaded = false;
-var setupInitialContainer = function() {
-    var container = new eqEd.Container(symbolSizeConfig);
-    container.padTop = 0.2;
-    container.padBottom = 0.2;
-    container.fontSize = "fontSizeNormal";
-    container.domObj = container.buildDomObj();
-    container.domObj.updateFontSize(container.fontSize);
-    container.domObj.value.addClass('equation');
-    $('.testEquation').after(container.domObj.value);
-    var topLevelEmptyContainerWrapper = new eqEd.TopLevelEmptyContainerWrapper(symbolSizeConfig);
-    container.addWrappers([0, topLevelEmptyContainerWrapper]);
-    topLevelEmptyContainerWrapper.updateAll();
-};
 
 var setup = function() {
     if (fontsLoaded && imagesLoaded) {
-        symbolSizeConfig = new eqEd.SymbolSizeConfiguration();
         $('.loadingMessage').remove();
-        clipboard = new eqEd.Clipboard();
-        inializePropertyHooks(symbolSizeConfig);
-        setupKeyboardEvents(symbolSizeConfig, clipboard);
-        setupMenuEvents(symbolSizeConfig);
-        setupInitialContainer();
+        initializePropertyHooks();
+        setupKeyboardEvents();
+        setupMenuEvents();
+        var equation = new eqEd.Equation();
+        $('.equation-editor').replaceWith(equation.domObj.value);
+        equation.updateAll();
+        //setupInitialContainer();
     }
 }
 
